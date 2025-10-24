@@ -156,7 +156,7 @@ Designed exclusively for modern digital HD video systems with software-controlle
 
 **Firmware Repository**: [github.com/AeroCogito/h7-digital-firmware](https://github.com/AeroCogito/h7-digital-firmware)
 
-**Hardware Repository**: [github.com/AeroCogito/h7-digital](https://github.com/AeroCogito/h7-digital)
+**Hardware Repository**: [github.com/AeroCogito/h7-digital-docs](https://github.com/AeroCogito/h7-digital-docs)
 
 ---
 

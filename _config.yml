@@ -1,7 +1,7 @@
 # Site settings
 title: AeroCogito H7-Digital
 description: High-performance STM32H743 flight controller for ArduPilot and Betaflight
-baseurl: "/h7-digital"  # repo name
+baseurl: "/h7-digital-docs"  # repo name
 url: "https://aerocogito.github.io"
 permalink: pretty
 

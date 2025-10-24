@@ -2,7 +2,7 @@
 
 Official documentation site for the AeroCogito H7-Digital flight controller.
 
-🌐 **Live Site**: [https://aerocogito.github.io/h7-digital](https://aerocogito.github.io/h7-digital)
+🌐 **Live Site**: [https://aerocogito.github.io/h7-digital-docs](https://aerocogito.github.io/h7-digital-docs)
 
 ## About
 
@@ -20,7 +20,7 @@ This repository contains production-ready documentation for the H7-Digital fligh
 
 ### View Documentation
 
-Visit the live site: **https://aerocogito.github.io/h7-digital**
+Visit the live site: **https://aerocogito.github.io/h7-digital-docs**
 
 ### Run Locally
 
@@ -41,7 +41,7 @@ Visit the live site: **https://aerocogito.github.io/h7-digital**
 
 4. **View in browser**
    ```
-   http://localhost:4000/h7-digital
+   http://localhost:4000/h7-digital-docs
    ```
 
 ## Project Structure
@@ -171,7 +171,7 @@ This repository is configured for automatic deployment to GitHub Pages:
 
 1. Push changes to `main` branch
 2. GitHub Actions automatically builds the Jekyll site
-3. Site is live at https://aerocogito.github.io/h7-digital within ~1 minute
+3. Site is live at https://aerocogito.github.io/h7-digital-docs within ~1 minute
 
 **Configuration:**
 - Settings → Pages → Source: Deploy from a branch
@@ -188,7 +188,7 @@ bundle install
 # Serve locally with live reload
 bundle exec jekyll serve
 
-# Access at http://localhost:4000/h7-digital
+# Access at http://localhost:4000/h7-digital-docs
 
 # Build static site (for testing)
 bundle exec jekyll build

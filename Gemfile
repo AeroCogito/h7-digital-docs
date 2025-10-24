@@ -3,10 +3,7 @@ source "https://rubygems.org"
 # Jekyll and GitHub Pages
 gem "github-pages", group: :jekyll_plugins
 
-# Theme
-gem "just-the-docs", "0.8.2"
-
-# Plugins
+# Plugins (jekyll-remote-theme is included in github-pages)
 gem "jekyll-include-cache", group: :jekyll_plugins
 
 # Windows and JRuby does not include zoneinfo files

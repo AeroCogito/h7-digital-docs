@@ -1,0 +1,158 @@
+<!-- Custom JavaScript for keyboard shortcuts and enhancements -->
+<script>
+(function() {
+  'use strict';
+
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  function init() {
+    initKeyboardShortcuts();
+    initCollapsibleTOC();
+  }
+
+  function initKeyboardShortcuts() {
+    // Keyboard shortcut: Press '/' to focus search box
+    document.addEventListener('keydown', function(e) {
+      // Check if '/' key is pressed
+      if (e.key === '/' || e.keyCode === 191) {
+        // Don't trigger if user is already typing in an input/textarea
+        if (document.activeElement.tagName === 'INPUT' ||
+            document.activeElement.tagName === 'TEXTAREA') {
+          return;
+        }
+
+        // Prevent default '/' character from appearing
+        e.preventDefault();
+
+        // Find the search input and focus it
+        var searchInput = document.querySelector('#search-input') ||
+                         document.querySelector('.search-input');
+        if (searchInput) {
+          searchInput.focus();
+          // Add visual feedback class
+          var searchWrap = searchInput.closest('.search-input-wrap') ||
+                          searchInput.parentElement;
+          if (searchWrap) {
+            searchWrap.classList.add('search-focused');
+            setTimeout(function() {
+              searchWrap.classList.remove('search-focused');
+            }, 600);
+          }
+        }
+      }
+
+      // Escape key to blur/unfocus search
+      if (e.key === 'Escape' || e.keyCode === 27) {
+        var activeElement = document.activeElement;
+        if (activeElement && (activeElement.id === 'search-input' ||
+            activeElement.classList.contains('search-input'))) {
+          activeElement.blur();
+        }
+      }
+    });
+  }
+
+  function initCollapsibleTOC() {
+    // Find the TOC element (can be ol or ul)
+    var toc = document.getElementById('markdown-toc');
+    if (!toc) return;
+
+    // Only process if TOC has nested lists (ol/ul > li > ol/ul structure)
+    var topLevelItems = toc.querySelectorAll(':scope > li');
+    if (topLevelItems.length === 0) return;
+
+    // Wrap TOC in a container for expand/collapse functionality
+    var tocContainer = document.createElement('div');
+    tocContainer.className = 'toc-collapsible-container';
+    toc.parentNode.insertBefore(tocContainer, toc);
+    tocContainer.appendChild(toc);
+
+    // Add expand/collapse toggle button
+    var toggleButton = document.createElement('button');
+    toggleButton.className = 'toc-toggle-all';
+    toggleButton.innerHTML = '<span class="toc-toggle-icon">▼</span> Expand All Sections';
+    toggleButton.setAttribute('aria-label', 'Toggle all table of contents sections');
+    tocContainer.insertBefore(toggleButton, toc);
+
+    var allExpanded = false;
+
+    // Process each top-level item that has children (check for both ul and ol)
+    topLevelItems.forEach(function(item) {
+      var nestedList = item.querySelector('ol, ul');
+      if (!nestedList) return;
+
+      // Create toggle button for this section
+      var link = item.querySelector('a');
+      if (!link) return;
+
+      var sectionToggle = document.createElement('button');
+      sectionToggle.className = 'toc-section-toggle';
+      sectionToggle.innerHTML = '<span class="toc-arrow">▶</span>';
+      sectionToggle.setAttribute('aria-label', 'Toggle section');
+      sectionToggle.setAttribute('aria-expanded', 'false');
+
+      // Insert toggle button before the link
+      item.insertBefore(sectionToggle, link);
+
+      // Initially collapse the nested list
+      nestedList.style.display = 'none';
+      nestedList.classList.add('toc-collapsed');
+
+      // Toggle individual section
+      sectionToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var isCollapsed = nestedList.classList.contains('toc-collapsed');
+
+        if (isCollapsed) {
+          nestedList.style.display = 'block';
+          nestedList.classList.remove('toc-collapsed');
+          sectionToggle.querySelector('.toc-arrow').textContent = '▼';
+          sectionToggle.setAttribute('aria-expanded', 'true');
+        } else {
+          nestedList.style.display = 'none';
+          nestedList.classList.add('toc-collapsed');
+          sectionToggle.querySelector('.toc-arrow').textContent = '▶';
+          sectionToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // Toggle all sections
+    toggleButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      allExpanded = !allExpanded;
+
+      topLevelItems.forEach(function(item) {
+        var nestedList = item.querySelector('ol, ul');
+        var sectionToggle = item.querySelector('.toc-section-toggle');
+        if (!nestedList || !sectionToggle) return;
+
+        if (allExpanded) {
+          nestedList.style.display = 'block';
+          nestedList.classList.remove('toc-collapsed');
+          sectionToggle.querySelector('.toc-arrow').textContent = '▼';
+          sectionToggle.setAttribute('aria-expanded', 'true');
+        } else {
+          nestedList.style.display = 'none';
+          nestedList.classList.add('toc-collapsed');
+          sectionToggle.querySelector('.toc-arrow').textContent = '▶';
+          sectionToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      if (allExpanded) {
+        toggleButton.innerHTML = '<span class="toc-toggle-icon">▲</span> Collapse All Sections';
+      } else {
+        toggleButton.innerHTML = '<span class="toc-toggle-icon">▼</span> Expand All Sections';
+      }
+    });
+  }
+})();
+</script>

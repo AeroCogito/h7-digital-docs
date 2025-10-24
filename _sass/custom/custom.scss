@@ -1,0 +1,970 @@
+/* ============================================
+   H7-Digital Documentation - Custom Styles
+   ============================================ */
+
+/* ============================================
+   1. Typography & Readability Improvements
+   ============================================ */
+
+/* Better body text readability */
+.main-content {
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 50rem; /* Optimal reading width */
+  padding-top: 2rem;
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Improve heading hierarchy */
+.main-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.main-content h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.3rem;
+}
+
+.main-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.main-content h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Better paragraph spacing */
+.main-content p {
+  margin-bottom: 1.25rem;
+}
+
+/* Improved list styling */
+.main-content ul,
+.main-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.main-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+/* Better nested list styling */
+.main-content li > ul,
+.main-content li > ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   2. Enhanced Table Styling
+   ============================================ */
+
+/* Professional table appearance */
+.main-content table {
+  width: 100%;
+  margin-bottom: 2rem;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.main-content thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+}
+
+.main-content th {
+  padding: 1rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+}
+
+.main-content td {
+  padding: 0.85rem 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Zebra striping for better readability */
+.main-content tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.main-content tbody tr:hover {
+  background-color: rgba(102, 126, 234, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+/* Highlight first column in tables (often labels) */
+.main-content td:first-child {
+  font-weight: 500;
+}
+
+/* Better code in tables */
+.main-content table code {
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.85rem;
+}
+
+/* ============================================
+   3. Improved Code Blocks
+   ============================================ */
+
+/* Inline code */
+.main-content code {
+  background-color: rgba(110, 118, 129, 0.2);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Consolas', monospace;
+  border: 1px solid rgba(110, 118, 129, 0.3);
+}
+
+/* Code blocks */
+.main-content pre {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.main-content pre code {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #d4d4d4;
+}
+
+/* Add language label to code blocks */
+.main-content pre::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   4. Enhanced Callout Boxes
+   ============================================ */
+
+/* Base callout styling */
+.main-content .label,
+.main-content .label-blue,
+.main-content .label-green,
+.main-content .label-yellow,
+.main-content .label-red {
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-left: 5px solid;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Note callout (blue) */
+.main-content .label-blue {
+  background-color: rgba(66, 153, 225, 0.1);
+  border-left-color: #4299e1;
+}
+
+.main-content .label-blue::before {
+  content: "📘 ";
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+/* Tip callout (green) */
+.main-content .label-green {
+  background-color: rgba(72, 187, 120, 0.1);
+  border-left-color: #48bb78;
+}
+
+.main-content .label-green::before {
+  content: "💡 ";
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+/* Warning callout (red) */
+.main-content .label-red {
+  background-color: rgba(245, 101, 101, 0.1);
+  border-left-color: #f56565;
+}
+
+.main-content .label-red::before {
+  content: "⚠️ ";
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+/* Important callout (yellow) */
+.main-content .label-yellow {
+  background-color: rgba(237, 137, 54, 0.1);
+  border-left-color: #ed8936;
+}
+
+.main-content .label-yellow::before {
+  content: "⭐ ";
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+/* Callout title styling */
+.main-content .label > p:first-child > strong:first-child {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   5. Image Styling
+   ============================================ */
+
+/* Better image presentation */
+.main-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin: 2rem auto;
+  display: block;
+}
+
+/* Image captions */
+.main-content img + em {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: -1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Board images - larger display */
+.main-content img[alt*="H7-Digital"],
+.main-content img[alt*="Top View"],
+.main-content img[alt*="Bottom View"] {
+  max-width: 90%;
+  border: 2px solid var(--border-color);
+}
+
+/* ============================================
+   6. Link Styling Improvements
+   ============================================ */
+
+/* Better link appearance */
+.main-content a {
+  color: #667eea;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.main-content a:hover {
+  color: #764ba2;
+  border-bottom-color: #764ba2;
+}
+
+/* External link indicator */
+.main-content a[href^="http"]:not(:has(img))::after {
+  content: " ↗";
+  font-size: 0.8em;
+  opacity: 0.6;
+}
+
+/* Don't add indicator to buttons */
+.main-content a.btn::after,
+.main-content a.btn-primary::after,
+.main-content a.btn-orange::after,
+.main-content a.btn-purple::after,
+.main-content a.btn-green::after,
+.main-content a.btn-blue::after {
+  content: "" !important;
+}
+
+/* ============================================
+   7. Button Styling
+   ============================================ */
+
+/* Enhanced button appearance */
+.main-content .btn,
+.main-content .btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+  border: none;
+  display: inline-block;
+  margin: 0.5rem;
+}
+
+.main-content .btn:hover,
+.main-content .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+/* Call-to-action button (orange/gold) - Stands out for Buy Now */
+.main-content a.btn-orange,
+.main-content a.btn.btn-orange,
+a.btn-orange,
+.btn-orange {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: white !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4) !important;
+  transition: all 0.3s ease;
+  border: none !important;
+  display: inline-block;
+  margin: 0.5rem;
+  text-decoration: none;
+}
+
+.main-content a.btn-orange:hover,
+.main-content a.btn.btn-orange:hover,
+a.btn-orange:hover,
+.btn-orange:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6) !important;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+  color: white !important;
+}
+
+/* ============================================
+   8. Blockquote Styling
+   ============================================ */
+
+.main-content blockquote {
+  border-left: 4px solid #667eea;
+  background-color: rgba(102, 126, 234, 0.05);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+  font-style: italic;
+}
+
+.main-content blockquote p {
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   9. Horizontal Rules
+   ============================================ */
+
+.main-content hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #667eea, transparent);
+  margin: 3rem 0;
+}
+
+/* ============================================
+   10. Navigation Improvements
+   ============================================ */
+
+/* Better sidebar link styling */
+.navigation .nav-list-link {
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.navigation .nav-list-link:hover {
+  background-color: rgba(102, 126, 234, 0.1);
+  transform: translateX(4px);
+}
+
+/* Active page highlight */
+.navigation .nav-list-link.active {
+  background: linear-gradient(90deg, rgba(102, 126, 234, 0.2), transparent);
+  border-left: 3px solid #667eea;
+  font-weight: 600;
+}
+
+/* ============================================
+   11. Search Box Improvements
+   ============================================ */
+
+/* Fix search icon overlay and improve styling */
+.search {
+  position: relative;
+}
+
+.search-input-wrap {
+  position: relative;
+}
+
+.search-input {
+  border-radius: 8px;
+  border: 2px solid #667eea;
+  padding: 0.75rem 1rem 0.75rem 2.75rem !important; /* Add left padding for icon */
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #764ba2;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* Position search icon properly */
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ensure placeholder text doesn't overlap icon */
+.search-input::placeholder {
+  padding-left: 0;
+}
+
+/* Visual feedback when search is focused via keyboard shortcut */
+.search-focused .search-input {
+  border-color: #764ba2;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+  animation: searchPulse 0.6s ease-out;
+}
+
+@keyframes searchPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+  }
+}
+
+/* ============================================
+   12. Table of Contents Styling
+   ============================================ */
+
+#markdown-toc {
+  background-color: rgba(102, 126, 234, 0.05);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+#markdown-toc::before {
+  content: "📑 Table of Contents";
+  display: block;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #667eea;
+}
+
+#markdown-toc li {
+  margin-bottom: 0.5rem;
+}
+
+/* Collapsible TOC Enhancements */
+.toc-collapsible-container {
+  position: relative;
+}
+
+.toc-toggle-all {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+}
+
+.toc-toggle-all:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4);
+}
+
+.toc-toggle-all:active {
+  transform: translateY(0);
+}
+
+.toc-toggle-icon {
+  font-size: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.toc-section-toggle {
+  background: none;
+  border: none;
+  color: #667eea;
+  cursor: pointer;
+  padding: 0.25rem;
+  margin-right: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  transition: all 0.2s ease;
+  border-radius: 3px;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: text-top;
+  flex-shrink: 0;
+}
+
+.toc-section-toggle:hover {
+  background-color: rgba(102, 126, 234, 0.1);
+  color: #764ba2;
+}
+
+.toc-section-toggle:active {
+  background-color: rgba(102, 126, 234, 0.2);
+}
+
+.toc-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  font-size: 0.7rem;
+}
+
+/* Smooth collapse/expand animation */
+#markdown-toc ul,
+#markdown-toc ol {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+#markdown-toc ul.toc-collapsed,
+#markdown-toc ol.toc-collapsed {
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Reset default list styling for better control */
+#markdown-toc {
+  list-style: none;
+  padding-left: 0;
+}
+
+#markdown-toc > li {
+  list-style: none;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+/* Top-level item with toggle button */
+#markdown-toc > li > .toc-section-toggle {
+  float: left;
+  margin-top: 0.1rem;
+}
+
+#markdown-toc > li > a {
+  display: inline-block;
+  line-height: 1.6;
+  padding-left: 0;
+}
+
+/* Nested lists */
+#markdown-toc > li > ol,
+#markdown-toc > li > ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  padding-left: 2.5rem;
+  list-style: none;
+}
+
+#markdown-toc ol ol,
+#markdown-toc ol ul,
+#markdown-toc ul ol,
+#markdown-toc ul ul {
+  margin-top: 0.25rem;
+  padding-left: 1.5rem;
+}
+
+/* Nested list items */
+#markdown-toc ol li,
+#markdown-toc ul li {
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+}
+
+/* Add subtle bullets for nested items */
+#markdown-toc ol li::before,
+#markdown-toc ul li::before {
+  content: "›";
+  color: #667eea;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  opacity: 0.6;
+}
+
+/* Remove bullet from top-level items */
+#markdown-toc > li::before {
+  content: none;
+}
+
+/* Clear floats */
+#markdown-toc > li::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ============================================
+   13. Responsive TOC for Mobile
+   ============================================ */
+
+@media (max-width: 768px) {
+  .toc-toggle-all {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem;
+  }
+
+  #markdown-toc {
+    padding: 1rem;
+  }
+
+  #markdown-toc > li > ol,
+  #markdown-toc > li > ul {
+    padding-left: 1.5rem;
+  }
+
+  .toc-section-toggle {
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.65rem;
+  }
+}
+
+/* ============================================
+   14. Checkmark/X Mark Styling
+   ============================================ */
+
+/* Style checkmarks and X marks in lists */
+.main-content li:has(> :first-child:is(✅, ✓)) {
+  list-style: none;
+  position: relative;
+  padding-left: 0;
+}
+
+.main-content li:has(> :first-child:is(❌, ✗)) {
+  list-style: none;
+  position: relative;
+  padding-left: 0;
+}
+
+/* ============================================
+   15. Responsive Improvements
+   ============================================ */
+
+/* Better mobile experience - ALL mobile breakpoints consolidated here */
+@media (max-width: 768px) {
+  .main-content {
+    font-size: 15px;
+    padding: 1rem;
+  }
+
+  .main-content h1 {
+    font-size: 2rem;
+  }
+
+  .main-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .main-content table {
+    font-size: 0.8rem;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .main-content th,
+  .main-content td {
+    padding: 0.5rem 0.4rem;
+  }
+
+  /* Improve image sizing on mobile */
+  .main-content img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Better code block scrolling on mobile */
+  .main-content pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Button group mobile styles */
+  .button-group-center .btn {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 0.5rem auto;
+  }
+
+  /* Hero section mobile styles (landing page only) */
+  .main-content .hero-landing h1 {
+    font-size: 2.25rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .main-content .hero-landing p {
+    font-size: 1.1rem !important;
+    margin-bottom: 2rem !important;
+  }
+}
+
+/* ============================================
+   16. Print Styles
+   ============================================ */
+
+@media print {
+  .navigation,
+  .search,
+  .aux-nav,
+  .site-footer {
+    display: none !important;
+  }
+
+  .main-content {
+    max-width: 100%;
+    font-size: 12pt;
+  }
+
+  .main-content a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  .main-content a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+
+  .main-content table {
+    page-break-inside: avoid;
+  }
+
+  .main-content img {
+    max-width: 80%;
+    page-break-inside: avoid;
+  }
+}
+
+/* ============================================
+   17. Custom Animations
+   ============================================ */
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fade-in animation for content */
+.main-content {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   18. Utility Classes
+   ============================================ */
+
+/* Center text */
+.text-center {
+  text-align: center;
+}
+
+/* Center button group */
+.button-group-center {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.button-group-center .btn {
+  display: inline-block;
+  margin: 0.5rem 0.5rem;
+}
+
+/* Mobile styles moved to Section 14 for consolidation */
+
+/* Highlight text */
+.highlight-text {
+  background: linear-gradient(120deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+}
+
+/* Badge styling */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 12px;
+  background-color: #667eea;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0.25rem;
+}
+
+/* Spacer utilities */
+.mt-2 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mt-4 { margin-top: 4rem; }
+.mb-4 { margin-bottom: 4rem; }
+
+/* ============================================
+   19. Footer Improvements
+   ============================================ */
+
+.site-footer {
+  border-top: 3px solid #667eea;
+  padding: 2rem 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(102, 126, 234, 0.05) 100%);
+}
+
+/* ============================================
+   20. Logo Improvements
+   ============================================ */
+
+.site-logo {
+  transition: transform 0.3s ease;
+}
+
+.site-logo:hover {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   21. Custom Dark Mode Enhancements
+   ============================================ */
+
+/* Since you're using dark color scheme, enhance it */
+:root {
+  --brand-primary: #667eea;
+  --brand-secondary: #764ba2;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Better dark mode code blocks */
+.highlight {
+  background-color: #1e1e1e;
+  border-radius: 6px;
+}
+
+/* ============================================
+   22. Landing Page Hero Section
+   ============================================ */
+
+/* Hero title styling - make it pop! Only on landing page */
+.main-content .hero-landing h1 {
+  font-size: 2.75rem !important;
+  font-weight: 800 !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f59e0b 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.3 !important;
+  text-align: center !important;
+  max-width: 950px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Hero subtitle - the paragraph after the title (landing page only) */
+.hero-landing p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2.5rem;
+  margin-top: 0;
+  font-weight: 300;
+  max-width: 45rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Mobile styles moved to Section 14 for consolidation */
+
+/* ============================================
+   End of Custom Styles
+   ============================================ */

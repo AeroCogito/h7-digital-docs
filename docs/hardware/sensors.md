@@ -288,10 +288,9 @@ GPS_TYPE = 1             (Auto-detect u-blox/NMEA)
 
 | Model | GPS Chipset | Compass | Notes |
 |-------|-------------|---------|-------|
-| **Holybro M9N** | u-blox M9N | Integrated | Recommended for ArduPilot |
+| **Holybro M10 Micro** | u-blox M10 | IST8310 | Recommended for ArduPilot - [ArduPilot Dev Review](https://discuss.ardupilot.org/t/the-great-gps-showdown-speed-precision-and-a-few-surprises/122661) |
 | **Matek M10-5883** | u-blox M10 | QMC5883L | Latest generation, excellent accuracy |
-| **Beitian BN-880** | u-blox M8N | HMC5883L | Budget option, widely available |
-| **SpeedyBee GPS** | u-blox M8/M9 | Integrated | Good value, multiple variants |
+| **Beitian BN-880** | u-blox M8N | QMC5883L | Budget option, widely available |
 
 {: .note }
 > **GPS Generation Comparison**: u-blox M10 (newest, 2020+) offers faster fix times and better multipath rejection than M9 (2019) and M8 (2014). All three generations are supported by ArduPilot and Betaflight. M10 modules are recommended for new builds but M8/M9 remain excellent choices.
@@ -333,10 +332,10 @@ The H7-Digital does not have an onboard compass. External compasses are preferre
 | **Allow Arming** | Without compass (`ALLOW_ARM_NO_COMPASS`) | N/A |
 
 **Common Compass ICs:**
-- **QMC5883L** - Most common in GPS combo modules, good performance
-- **HMC5883L** - Older generation, still widely used and supported
+- **QMC5883L** - Most common in GPS combo modules, cheap but with low performance
+- **HMC5883L** - Discontinued; all modules marketed as HMC today are clones or QMC5883L
+- **LIS3MDL** - Modern, STMicroelectronics part with good performance
 - **IST8310** - High accuracy, good interference resistance
-- **LIS3MDL** - Newer, ST Microelectronics, ArduPilot support
 
 **ArduPilot Configuration:**
 ```
@@ -368,7 +367,7 @@ ArduPilot will auto-detect most I2C compass modules on boot.
 **Compass (ArduPilot only):**
 - ✅ First-time setup
 - ✅ After moving compass location
-- ✅ If heading drifts or "toilet bowling" occurs
+- ✅ If heading drifts or "toilet bowling" occurs (spiraling in position hold)
 - ✅ When flying in new geographic location (magnetic declination changes)
 
 **Barometer:**
@@ -492,7 +491,7 @@ Excessive vibration causes:
 
 **Check:**
 1. ✓ Firmware flashed correctly (verify board target)
-2. ✓ SPI1 connections (no physical damage)
+2. ✓ IMU check (no physical damage)
 3. ✓ Power to IMU (check 3.3V isolated rail)
 4. ✓ Re-flash firmware (may fix SPI initialization issues)
 
@@ -513,7 +512,6 @@ Excessive vibration causes:
 3. ✓ No I2C address conflicts
 
 **Solutions:**
-- Verify `BARO DPS310 I2C:0:0x76` in hwdef.dat (firmware definition)
 - Re-flash firmware
 - Contact support if persistent
 

@@ -405,23 +405,23 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 
 | LED | Color | Pin | Location (By USB port) | Preview |
 |-----|-------|-----|------------------------|---------|
-| LED0 | Blue | PD8 | Right | ![](/assets/images/led/01_blue_solid.gif) |
-| LED1 | Green | PB15 | Center | ![](/assets/images/led/10_green_solid.gif) |
-| LED2 | Amber | PB14 | Left | ![](/assets/images/led/09_amber_solid.gif) |
+| LED0 | Blue | PD8 | Right | ![]({{ site.baseurl }}/assets/images/led/01_blue_solid.gif) |
+| LED1 | Green | PB15 | Center | ![]({{ site.baseurl }}/assets/images/led/10_green_solid.gif) |
+| LED2 | Amber | PB14 | Left | ![]({{ site.baseurl }}/assets/images/led/09_amber_solid.gif) |
 
 #### ArduPilot LED Quick Reference
 
 | LED Color / Pattern       | Meaning                                 | Preview |
 |---------------------------|-----------------------------------------|---------|
-| Blue solid                | Armed                                   | ![](/assets/images/led/01_blue_solid.gif) |
-| Blue single flash         | Disarmed, pre-arm OK                    | ![](/assets/images/led/02_blue_single_flash.gif) |
-| Blue double flash         | Disarmed, pre-arm failure               | ![](/assets/images/led/03_blue_double_flash.gif) |
-| Blue/Amber alternating    | Initialising (boot)                     | ![](/assets/images/led/04_blue_amber_alternating.gif) |
-| Blue → Green → Amber chase| Save trim / ESC calibration in progress | ![](/assets/images/led/05_bga_chase.gif) |
-| Amber off                 | No GPS detected                         | ![](/assets/images/led/06_all_off.gif) |
-| Amber fast blink (~2 Hz)  | GPS present, no lock                    | ![](/assets/images/led/07_amber_fast_blink.gif) |
-| Amber slow blink (~1 Hz)  | 2D lock (incomplete)                    | ![](/assets/images/led/08_amber_slow_blink.gif) |
-| Amber solid               | GPS 3D lock or better                   | ![](/assets/images/led/09_amber_solid.gif) |
+| Blue solid                | Armed                                   | ![]({{ site.baseurl }}/assets/images/led/01_blue_solid.gif) |
+| Blue single flash         | Disarmed, pre-arm OK                    | ![]({{ site.baseurl }}/assets/images/led/02_blue_single_flash.gif) |
+| Blue double flash         | Disarmed, pre-arm failure               | ![]({{ site.baseurl }}/assets/images/led/03_blue_double_flash.gif) |
+| Blue/Amber alternating    | Initialising (boot)                     | ![]({{ site.baseurl }}/assets/images/led/04_blue_amber_alternating.gif) |
+| Blue → Green → Amber chase| Save trim / ESC calibration in progress | ![]({{ site.baseurl }}/assets/images/led/05_bga_chase.gif) |
+| Amber off                 | No GPS detected                         | ![]({{ site.baseurl }}/assets/images/led/06_all_off.gif) |
+| Amber fast blink (~2 Hz)  | GPS present, no lock                    | ![]({{ site.baseurl }}/assets/images/led/07_amber_fast_blink.gif) |
+| Amber slow blink (~1 Hz)  | 2D lock (incomplete)                    | ![]({{ site.baseurl }}/assets/images/led/08_amber_slow_blink.gif) |
+| Amber solid               | GPS 3D lock or better                   | ![]({{ site.baseurl }}/assets/images/led/09_amber_solid.gif) |
 
 {: .tip }
 > **Viewing Detailed Pre-Arm Messages**: Connect to Mission Planner or QGroundControl to see specific pre-arm failure reasons. The ground station displays exact error messages that the LEDs cannot convey.
@@ -432,11 +432,11 @@ See [Betaflight FC-LEDs Documentation](https://www.betaflight.com/docs/developme
 
 | LED Color / Pattern | Meaning | Preview |
 |---------------------|---------|---------|
-| Blue solid | **Armed** (motors can spin) | ![](/assets/images/led/01_blue_solid.gif) |
-| Blue flashing | Warning condition, serial/ESC passthrough, or USB MSC activity | ![](/assets/images/led/02_blue_single_flash.gif) |
-| Blue/Green flashing 5 times | Initialising (boot) | ![](/assets/images/led/12_blue_green_flash.gif) |
-| Amber normally on | Normal operation (default state) | ![](/assets/images/led/09_amber_solid.gif) |
-| Flash pattern (1-16 pulses) | Hardware fault / error code - see [Betaflight FC-LEDs Documentation](https://www.betaflight.com/docs/development/FC-LEDs) for specific codes | ![](/assets/images/led/13_all_flash.gif) |
+| Blue solid | **Armed** (motors can spin) | ![]({{ site.baseurl }}/assets/images/led/01_blue_solid.gif) |
+| Blue flashing | Warning condition, serial/ESC passthrough, or USB MSC activity | ![]({{ site.baseurl }}/assets/images/led/02_blue_single_flash.gif) |
+| Blue/Green flashing 5 times | Initialising (boot) | ![]({{ site.baseurl }}/assets/images/led/12_blue_green_flash.gif) |
+| Amber normally on | Normal operation (default state) | ![]({{ site.baseurl }}/assets/images/led/09_amber_solid.gif) |
+| Flash pattern (1-16 pulses) | Hardware fault / error code - see [Betaflight FC-LEDs Documentation](https://www.betaflight.com/docs/development/FC-LEDs) for specific codes | ![]({{ site.baseurl }}/assets/images/led/13_all_flash.gif) |
 
 {: .tip }
 > **Viewing Detailed Arming Issues**: Connect to Betaflight Configurator and check the CLI `status` command to see specific arming disable flags.
@@ -449,7 +449,7 @@ See [Betaflight FC-LEDs Documentation](https://www.betaflight.com/docs/developme
 | **Function** | Enter DFU mode |
 | **Usage** | Hold during power-on for firmware flashing |
 | **Notes** | Only amber LED will illuminate in DFU mode |
-| **Preview** | ![](/assets/images/led/09_amber_solid.gif) |
+| **Preview** | ![]({{ site.baseurl }}/assets/images/led/09_amber_solid.gif) |
 
 ### VTX Power Control
 

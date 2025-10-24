@@ -112,7 +112,7 @@ Hardware designed from the start for compliance:
 The H7-Digital hardware is designed and manufactured to meet:
 
 - **NDAA Section 848** - Operating Software compliance ready
-- **DIU Blue List Framework** - compliant
+- **DIU Blue List Framework** - compliant (pending)
 - **Made in USA** - Designed and manufactured domestically
 
 ---

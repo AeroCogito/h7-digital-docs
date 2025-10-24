@@ -493,7 +493,7 @@ See [Betaflight FC-LEDs Documentation](https://www.betaflight.com/docs/developme
 | Standard | Status |
 |----------|--------|
 | **NDAA Section 848** | Operating Software compliant (with secure firmware) |
-| **DIU Blue List Framework** | Compliant |
+| **DIU Blue List Framework** | Compliant (Pending) |
 
 {: .note }
 > The H7-Digital hardware is designed, manufactured, and assembled in the USA with an auditable supply chain for NDAA and DIU Blue List Framework compliance. Contact [support@aerocogito.com](mailto:support@aerocogito.com) for compliance documentation.

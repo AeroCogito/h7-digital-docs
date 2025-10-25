@@ -405,9 +405,9 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 
 | LED | Color | Pin | Location (By USB port) | Preview |
 |-----|-------|-----|------------------------|---------|
-| LED0 | Blue | PD8 | Right | ![]({{ site.baseurl }}/assets/images/led/01_blue_solid.gif) |
+| LED0 | Blue | PD8 | Left | ![]({{ site.baseurl }}/assets/images/led/01_blue_solid.gif) |
 | LED1 | Green | PB15 | Center | ![]({{ site.baseurl }}/assets/images/led/10_green_solid.gif) |
-| LED2 | Amber | PB14 | Left | ![]({{ site.baseurl }}/assets/images/led/09_amber_solid.gif) |
+| LED2 | Amber | PB14 | Right | ![]({{ site.baseurl }}/assets/images/led/09_amber_solid.gif) |
 
 #### ArduPilot LED Quick Reference
 

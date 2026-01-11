@@ -10,7 +10,7 @@ permalink: /
 
 # AeroCogito H7-Digital Flight Controller
 
-High-performance, NDAA-compliant flight controller designed for professional UAS applications with companion computer integration.
+High-performance, DCMA Blue UAS / NDAA-compliant flight controller designed for professional UAS applications with companion computer integration.
 
 </div>
 

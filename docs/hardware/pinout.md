@@ -297,7 +297,7 @@ Common `SERIALx_PROTOCOL` values:
 | 6 | SCL | I2C Clock | PB6 | 3.3V I2C | Compass clock (I2C4 SCL) |
 
 **Configuration**:
-- **ArduPilot**: `SERIAL8_PROTOCOL = 5` (GPS), I2C compass auto-detected
+- **ArduPilot**: `SERIAL3_PROTOCOL = 5` (GPS), I2C compass auto-detected
 - **Betaflight**: Ports tab → GPS on UART8, Compass auto-detected on I2C4
 
 **Compatible GPS Modules**:
@@ -356,7 +356,7 @@ Common `SERIALx_PROTOCOL` values:
 For DJI goggles with integrated receiver (e.g., DJI FPV Goggles V2):
 - Connect DJI SBUS output to **R7** (pin 6)
 - Disable UART4 RC input: `SERIAL4_PROTOCOL = 0`
-- Enable UART7: `SERIAL7_PROTOCOL = 23` (RC Input)
+- Enable UART7: `SERIAL6_PROTOCOL = 23` (RC Input)
 
 ---
 
@@ -373,7 +373,7 @@ For DJI goggles with integrated receiver (e.g., DJI FPV Goggles V2):
 | 4 | T5 | TX | PB13 | 3.3V UART | FC TX → Companion RX (UART5 TX) |
 
 **Configuration**:
-- **ArduPilot**: `SERIAL5_PROTOCOL = 2` (MAVLink2), `SERIAL5_BAUD = 115` (115200 baud)
+- **ArduPilot**: `SERIAL1_PROTOCOL = 2` (MAVLink2), `SERIAL1_BAUD = 115` (115200 baud)
 - **Betaflight**: Not typically used (ArduPilot feature)
 
 **Typical Baud Rates**:
@@ -549,7 +549,7 @@ SERVO_BLH_TRATE = 10         (Telemetry rate in Hz, default 10, max 100)
 **Supported ESC Firmware**:
 - ✅ BLHeli_32 v32.7+
 - ✅ AM32
-- ✅ BLHeli_S with BlueJay or JazzMaverick firmware
+- ✅ BLHeli_S with BlueJay firmware
 - ❌ Stock BLHeli_S (not supported)
 
 **Protocol Requirements**:
@@ -580,8 +580,8 @@ SERVO_BLH_TRATE = 10         (Telemetry rate in Hz, default 10, max 100)
 
 **ArduPilot:**
 ```
-MOT_PWM_TYPE = 4             (DShot300)  OR
-MOT_PWM_TYPE = 5             (DShot600)  [Recommended]
+MOT_PWM_TYPE = 5             (DShot300)  OR
+MOT_PWM_TYPE = 6             (DShot600)  [Recommended]
 SERVO_BLH_BDMASK = 85        (Binary: 01010101 = M1,M3,M5,M7)
 ```
 
@@ -667,7 +667,7 @@ Extended DShot Telemetry (EDT) enables ESCs to transmit comprehensive telemetry 
 
 **ArduPilot:**
 ```
-MOT_PWM_TYPE = 4 or 5        (DShot300 or DShot600)
+MOT_PWM_TYPE = 5 or 6        (DShot300 or DShot600)
 SERVO_BLH_BDMASK = 85        (Enable bidirectional on M1,M3,M5,M7)
 ```
 EDT data automatically logged as EDT2 messages in flight logs (no additional config needed).
@@ -714,7 +714,7 @@ EDT data automatically logged as EDT2 messages in flight logs (no additional con
 | **Data Provided** | RPM, voltage, current, temp, mAh | RPM only | RPM, voltage, current, temp, diagnostics |
 | **Update Rate** | 10-100Hz | Up to 400Hz | Up to 400Hz (RPM) |
 | **DShot Speed** | All (150/300/600) | DShot300+ only | DShot300+ only |
-| **ESC Support** | BLHeli_32, AM32, BLHeli_S* | BLHeli_32, AM32, BLHeli_S (BlueJay/JazzMaverick) | BlueJay v0.19.2+, AM32 v2.04+, BLHeli_32 v32.9+ (issues) |
+| **ESC Support** | BLHeli_32, AM32, BLHeli_S* | BLHeli_32, AM32, BLHeli_S (BlueJay) | BlueJay v0.19.2+, AM32 v2.04+, BLHeli_32 v32.9+ (issues) |
 | **CPU Overhead** | Low (interrupt-based) | Moderate (DMA-based) | Moderate (DMA-based) |
 | **ArduPilot Motors** | All motors | M1, M3, M5, M7 only | M1, M3, M5, M7 only |
 | **Betaflight Motors** | All motors | M1-M7 (M8 no DMA) | M1-M7 (M8 no DMA) |
@@ -751,7 +751,7 @@ EDT data automatically logged as EDT2 messages in flight logs (no additional con
 - ✅ You're building a racing or freestyle quad (EDT is better if ESCs support it)
 
 {: .important }
-> **Cannot Use UART and Bidirectional/EDT Simultaneously**: Choose one telemetry method. Enabling both will cause conflicts. EDT is an extension of bidirectional DShot, so enabling BiDir DShot with EDT-compatible ESCs automatically provides EDT data.
+> **One Telemetry Method Recommended**: While UART ESC telemetry and bidirectional DShot use different physical interfaces and may technically coexist, running both simultaneously is redundant and not recommended. Choose one method for your build. EDT is an extension of bidirectional DShot, so enabling BiDir DShot with EDT-compatible ESCs automatically provides EDT data.
 
 ---
 
@@ -782,7 +782,7 @@ EDT data automatically logged as EDT2 messages in flight logs (no additional con
 For detailed configuration, parameters, and troubleshooting:
 - [ArduPilot ESC Telemetry Documentation](https://ardupilot.org/plane/docs/common-esc-telemetry.html)
 - [Betaflight ESC Firmware Guide](https://www.betaflight.com/docs/wiki/getting-started/hardware/esc-firmware) - EDT information
-- [Betaflight Bidirectional DShot Setup](https://betaflight.com/docs/wiki/guides/current/DSHOT-RPM-FILTERING)
+- [Betaflight Bidirectional DShot Setup](https://betaflight.com/docs/category/current)
 
 ---
 
@@ -992,7 +992,7 @@ The H7-Digital uses **JST-SH connectors** exclusively, adhering to the [BetaFlig
 
 - [BetaFlight Connector Standard](https://betaflight.com/docs/development/manufacturer/connector-standard) - Official JST-SH pinout standard
 - [ArduPilot Serial Port Configuration](https://ardupilot.org/copter/docs/common-serial-options.html) - UART protocol setup
-- [Betaflight Ports Configuration](https://betaflight.com/docs/wiki/configurator/ports-tab) - Ports tab guide
+- [Betaflight Ports Configuration](https://betaflight.com/docs/wiki/app/ports-tab) - Ports tab guide
 
 ---
 

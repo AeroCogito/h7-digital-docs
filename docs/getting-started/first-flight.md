@@ -124,7 +124,7 @@ Choose your first flight location carefully:
 - [ ] **No interference** - Away from WiFi, cell towers, power lines
 
 {: .note }
-> **USA Operators**: Check airspace restrictions using a [B4UFLY-approved app](https://www.faa.gov/uas/getting_started/b4ufly) (such as AutoPylot, Aloft, AirMap, or Kittyhawk). Recreational flights require compliance with [FAA Part 107](https://www.faa.gov/uas) or the Exception for Recreational Flyers.
+> **USA Operators**: Check airspace restrictions using a [B4UFLY](https://www.faa.gov/uas/getting_started/b4ufly)-approved app (such as [AutoPylot](https://www.autopylot.io), Aloft, or AirMap). Recreational flights require compliance with [FAA Part 107](https://www.faa.gov/uas) or the Exception for Recreational Flyers.
 
 ---
 
@@ -170,7 +170,7 @@ Have these items on hand:
 {: .note }
 > Motor numbering differs between ArduPilot and Betaflight depending on the frame type selected. Verify against your firmware's documentation. 
 - [ArduPilot Motor Order](https://ardupilot.org/copter/docs/connect-escs-and-motors.html) 
-- [BetaFlight Motor Order](https://www.betaflight.com/docs/wiki/configurator/motors-tab)
+- [BetaFlight Motor Order](https://www.betaflight.com/docs/wiki/app/motors-tab)
 
 ### Radio Test
 
@@ -373,7 +373,7 @@ LiPo fires are rare but serious:
 
 1. **Land immediately** if fire occurs in flight
 2. **Move away from aircraft** - Minimum 20 feet
-3. **Use ABC fire extinguisher** - Or sand/dirt (never water!)
+3. **Use water to cool the battery** - Copious water is effective for lithium-ion/LiPo fires per [NFPA](https://www.nfpa.org/) and [FAA guidance](https://www.faa.gov/hazmat/resources/lithium_batteries). An ABC fire extinguisher or sand can also be used to smother flames.
 4. **Call emergency services** if fire spreads
 5. **Do not touch** - LiPo fires are extremely hot
 
@@ -408,11 +408,11 @@ Don't rush into advanced flying:
 
 **Recreational Flyers**:
 - [Register](https://www.faa.gov/uas/getting_started/register_drone) aircraft if > 0.55 lbs (250g)
-- Fly with a [Remote ID](https://www.faa.gov/uas/getting_started/remote_id) (if required)
+- Comply with [Remote ID](https://www.faa.gov/uas/getting_started/remote_id) requirements (if required - certain government and law enforcement operations may be exempt per 14 CFR 89.1)
 - Follow [The Exception for Recreational Flyers](https://www.faa.gov/uas/recreational_flyers)
-- Fly in uncontrolled airspace (Class G)
+- Fly in uncontrolled airspace (Class G) or obtain [LAANC authorization](https://www.faa.gov/uas/getting_started/laanc) for controlled airspace
 - Respect altitude limits (400 ft AGL)
-- Check airspace using a [B4UFLY-approved app](https://www.faa.gov/uas/getting_started/b4ufly) (AutoPylot, Aloft, AirMap, Kittyhawk, etc.)
+- Check airspace using a [B4UFLY](https://www.faa.gov/uas/getting_started/b4ufly)-approved app ([AutoPylot](https://www.autopylot.io), Aloft, AirMap, etc.)
 
 **Commercial/Professional Operations**:
 - Obtain Part 107 Remote Pilot Certificate
@@ -462,7 +462,7 @@ If you encounter issues during your first flight:
 
 - **Email**: [support@aerocogito.com](mailto:support@aerocogito.com)
 - **ArduPilot Community**: [Forum](https://discuss.ardupilot.org/) • [Discord](https://ardupilot.org/discord)
-- **Betaflight Discord**: [betaflight.com/community](https://betaflight.com/community)
+- **Betaflight Discord**: [discord.gg/betaflight](https://discord.gg/betaflight)
 
 ---
 

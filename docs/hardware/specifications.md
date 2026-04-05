@@ -47,32 +47,32 @@ Complete technical specifications for the AeroCogito H7-Digital flight controlle
 | **Type** | 6-axis (3-axis gyro + 3-axis accelerometer) |
 | **Manufacturer** | TDK InvenSense |
 | **Interface** | SPI1 (high-speed) |
-| **Gyro Range** | ±15.625 to ±4000 dps (8 programmable settings) |
+| **Gyro Range** | ±15.625 to ±2000 dps (8 programmable settings), ±4000 dps extended range |
 | **Gyro Resolution (Standard)** | 16-bit ADC (0.0610 dps/LSB at ±2000 dps) |
 | **Gyro Resolution (High-Res)** | 19-bit FIFO (0.0076 dps/LSB at ±2000 dps) - **8x improvement** |
 | **Accel Range** | ±2g to ±32g (4 programmable settings) |
 | **Accel Resolution (Standard)** | 16-bit ADC (0.488 mg/LSB at ±16g) |
 | **Accel Resolution (High-Res)** | 18-bit FIFO (0.122 mg/LSB at ±16g) - **4x improvement** |
-| **Max ODR** | 32 kHz (gyro and accel) hardware maximum |
+| **Max ODR** | 32 kHz gyro / 8 kHz accel (hardware maximum) |
 | **Firmware ODR** | Gyro: 8 kHz (Betaflight), 8 kHz fast sampling → 1 kHz backend (ArduPilot) / Accel: 1 kHz (both) |
 | **Power Supply** | Isolated 3.3V rail with enhanced filtering |
 
 **Key Features**:
 
 **Performance Specifications**:
-- Industry-leading low noise (2.8 mdps/√Hz gyro, 65-70 µg/√Hz accel)
+- Industry-leading low noise (2.8 mdps/√Hz gyro, 70 µg/√Hz accel typical)
 - Excellent temperature stability (±5 mdps/°C gyro offset)
 - Extended measurement ranges (±4000 dps gyro, ±32g accel)
 
 **Resolution Modes** (ArduPilot vs Betaflight):
-- **Industry-first 20-bit FIFO format** (19-bit gyro + 18-bit accel + fractional bits)
+- **20-bit high-resolution FIFO mode** (19-bit gyro + 18-bit accel via fractional bits in 20-byte packets)
 - **High-resolution mode** (ArduPilot): 19-bit gyro, 18-bit accel via FIFO - 8x/4x better resolution
 - **Standard 16-bit mode** (Betaflight): Direct register reads for minimum latency
 
 **Advanced Features**:
 - On-chip FIFO buffer (2048 bytes, ~105 high-res samples or 128 standard samples)
 - Real-Time Clock (RTC) for sample synchronization
-- Configurable Anti-Alias Filter (AAF): 258Hz, 536Hz, 997Hz, 1962Hz cutoff frequencies
+- Configurable Anti-Alias Filter (AAF): 258Hz, 536Hz, 997Hz, 1962Hz cutoff frequencies (Betaflight driver options; hardware supports additional values)
 
 **H7-Digital Hardware Enhancements**:
 - Isolated 3.3V power rail eliminates electrical noise
@@ -85,8 +85,8 @@ Complete technical specifications for the AeroCogito H7-Digital flight controlle
 > **Firmware Defaults**: Both Betaflight and ArduPilot use **±2000 dps gyro** and **±16g accelerometer** ranges (not the full ±4000 dps / ±32g hardware maximum). See [Sensors - Understanding Programmable Range Modes]({{ site.baseurl }}/docs/hardware/sensors#understanding-programmable-range-modes) for detailed explanation of why these settings provide the optimal balance between resolution and range.
 
 **Driver References:**
-- [ArduPilot Invensensev3 Driver](https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp) - Lines 234-235: `GYRO_SCALE_2000DPS` and `ACCEL_SCALE_16G` defaults; Lines 267-270: high-resolution modes (`GYRO_SCALE_HIGHRES_2000DPS`, `ACCEL_SCALE_HIGHRES_16G`)
-- [Betaflight ICM426XX Driver](https://github.com/betaflight/betaflight/blob/master/src/main/drivers/accgyro/accgyro_spi_icm426xx.c) - Lines 413-421: `GYRO_SCALE_2000DPS` and 16g accel configuration; Lines 52-58: 24 MHz SPI max, 32 kHz CLKIN; Lines 145-151: AAF filter options
+- [ArduPilot Invensensev3 Driver](https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp) - Search `GYRO_SCALE_2000DPS` / `ACCEL_SCALE_16G` for defaults; search `GYRO_SCALE_HIGHRES_2000DPS` / `ACCEL_SCALE_HIGHRES_16G` for high-resolution FIFO modes
+- [Betaflight ICM426XX Driver](https://github.com/betaflight/betaflight/blob/master/src/main/drivers/accgyro/accgyro_spi_icm426xx.c) - Search `ICM426XX_MAX_SPI_CLK_HZ` for SPI speed; search `aafLUT426` for AAF filter options; search `icm426xxEnableExternalClock` for CLKIN support
 - [ICM-42688-P Datasheet](https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/ds-000347-icm-42688-p-v1.6.pdf) - TDK InvenSense official datasheet (Section 4.1: Programmable Full-Scale Range)
 
 For sensor mounting, calibration procedures, and high-resolution sampling details, see [Sensors]({{ site.baseurl }}/docs/hardware/sensors).
@@ -101,7 +101,7 @@ For sensor mounting, calibration procedures, and high-resolution sampling detail
 | **I2C Address** | 0x76 |
 | **Pressure Range** | 300-1200 hPa |
 | **Pressure Resolution** | 0.06 Pa RMS (24-bit output) |
-| **Pressure Accuracy** | ±0.002 hPa (±0.02m) in high precision mode |
+| **Pressure Precision** | ±0.002 hPa RMS (±0.02m altitude noise) in high precision mode |
 | **Absolute Accuracy** | ±1 hPa (±8m) |
 | **Hardware Max Rate** | 200 Hz |
 | **Firmware Sample Rate** | 32 Hz (both firmwares, 16x oversampling) |
@@ -243,7 +243,7 @@ For complete motor pin assignments, timer channels, and DMA configuration, see [
 |----------|------------|-------------|-------|
 | **DShot600** | ✓ | ✓ | Recommended (most tested, required for BiDir) |
 | **DShot300** | ✓ | ✓ | Large aircraft / long cables (BiDir compatible) |
-| **DShot150** | ✓ | ✓ | Maximum noise immunity (no BiDir support) |
+| **DShot150** | ✓ | ✓ | Maximum noise immunity (BiDir not supported in ArduPilot/Betaflight) |
 | **DShot1200** | ArduPilot only | ArduPilot only | Not recommended - see warning below |
 | **OneShot125** | ✓ | ✓ | Legacy protocol |
 | **OneShot42** | ✓ | ✓ | Legacy protocol |
@@ -255,11 +255,11 @@ For complete motor pin assignments, timer channels, and DMA configuration, see [
 {: .tip }
 > **DShot Protocol Selection Guide**:
 >
-> - **DShot600**: Recommended for most vehicles. Most widely tested and used. Ties up DMA channels for less time. **Required for bidirectional DShot on most systems.**
+> - **DShot600**: Recommended for most vehicles. Most widely tested and used. Ties up DMA channels for less time. **Recommended for bidirectional DShot.**
 > - **DShot300**: Recommended for larger aircraft with longer cable runs. Less susceptible to noise than DShot600. **Also supports bidirectional DShot.**
 > - **DShot150**: Best for very long cable runs (larger aircraft). Most noise-resistant. **Does NOT support bidirectional DShot.**
 >
-> **Bidirectional DShot Requirements**: Requires DShot300 or higher (longer pulse width needed to wait for ESC response). DShot150 is too slow for bidirectional operation. Only supported on BLHeli_32 or AM32 ESCs. Set `MOT_PWM_TYPE` to 4 (DShot300), 5 (DShot600), or 6 (DShot1200) in ArduPilot, though DShot300/600 are recommended.
+> **Bidirectional DShot Requirements**: Requires DShot300 or higher (longer pulse width needed to wait for ESC response). DShot150 is not supported for bidirectional operation in ArduPilot or Betaflight. Supported on BLHeli_32, AM32, or BLHeli_S ESCs running BlueJay firmware. Set `MOT_PWM_TYPE` to 5 (DShot300), 6 (DShot600), or 7 (DShot1200) in ArduPilot, though DShot300/600 are recommended.
 >
 > For comprehensive comparison of ESC telemetry methods (UART, Bidirectional DShot, Extended DShot Telemetry), see [Understanding ESC Telemetry Methods]({{ site.baseurl }}/docs/hardware/pinout#understanding-esc-telemetry-methods).
 
@@ -268,12 +268,12 @@ For complete motor pin assignments, timer channels, and DMA configuration, see [
 >
 > While the STM32H743 hardware supports DShot1200, **it is not recommended** for the following reasons:
 >
-> **Betaflight**: DShot1200 was **officially removed in Betaflight 4.1** and is no longer available. DShot600 is the maximum supported protocol for 8kHz gyro/PID loops. Reasons for removal:
+> **Betaflight**: DShot1200 was **officially removed in Betaflight 4.0** and is no longer available. DShot600 is the maximum supported protocol for 8kHz gyro/PID loops. Reasons for removal:
 > - Only needed for 32kHz looptime (no longer supported - max is 8kHz)
 > - Not stable with bidirectional DShot (required for RPM filtering)
 > - Poor ESC firmware support (BLHeli_S, BLHeli_32)
 >
-> **ArduPilot**: DShot1200 is technically supported (`MOT_PWM_TYPE = 6`) but **strongly discouraged**:
+> **ArduPilot**: DShot1200 is technically supported (`MOT_PWM_TYPE = 7`) but **strongly discouraged**:
 > - Much less tested than DShot600 (limited real-world validation)
 > - More susceptible to noise and signal integrity issues
 > - Ties up DMA channels for marginally less time than DShot600 (minimal benefit)
@@ -297,7 +297,7 @@ For complete motor pin assignments, timer channels, and DMA configuration, see [
 
 ### UART Ports
 
-**6 UART ports** available with configurable baud rates up to 1.5 Mbps (ArduPilot) / 1 Mbps (Betaflight):
+**6 UART ports** available with configurable baud rates up to 2 Mbps (ArduPilot) / 1 Mbps (Betaflight):
 
 | Port | Default Use | Connector |
 |------|-------------|-----------|
@@ -336,7 +336,7 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 - Configurable speed for sensor compatibility
 
 {: .note }
-> **I2C Speed and Sensor Compatibility**: The DPS368 barometer supports up to 3.4 MHz (High-Speed mode per I2C spec v2.1). External compass modules typically support up to 400 kHz. If experiencing sensor detection issues in Betaflight, try reducing I2C speed: `set i2c4_clockspeed_khz = 400` in CLI.
+> **I2C Speed and Sensor Compatibility**: The DPS368 barometer supports up to 1 MHz (Fast-mode Plus). External compass modules typically support up to 400 kHz. If experiencing sensor detection issues in Betaflight, try reducing I2C speed: `set i2c4_clockspeed_khz = 400` in CLI.
 
 ### SPI Ports
 
@@ -381,7 +381,7 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 | Specification | Details |
 |---------------|---------|
 | **Interface** | SDMMC1 (4-bit mode) |
-| **Speed** | Up to 50MB/s (UHS-I) |
+| **Speed** | Up to 25MB/s (4-bit SDR at 3.3V) |
 | **Capacity** | Up to 256GB tested |
 | **Card Type** | MicroSD, MicroSDHC, MicroSDXC |
 | **Recommended** | Class 10 or UHS-I |
@@ -524,12 +524,12 @@ See [Betaflight FC-LEDs Documentation](https://www.betaflight.com/docs/developme
 | Sensor | Hardware Max ODR | Firmware Default | Typical Usage |
 |--------|------------------|------------------|---------------|
 | **Gyroscope (ICM-42688-P)** | 32kHz | 8kHz (BF) / 1kHz (AP) | 8kHz (Betaflight), 1kHz (ArduPilot) |
-| **Accelerometer (ICM-42688-P)** | 32kHz | 1kHz | 1kHz both firmwares |
+| **Accelerometer (ICM-42688-P)** | 8kHz | 1kHz | 1kHz both firmwares |
 | **Barometer (DPS368)** | 200Hz | 32Hz | 32Hz both firmwares |
 | **GPS** | Sensor dependent | 5-10Hz | 5-10Hz (depends on GPS module) |
 
 {: .note }
-> **ICM-42688-P Maximum ODR**: The ICM-42688-P has a hardware maximum output data rate (ODR) of **32 kHz** for both gyroscope and accelerometer (with RTC support). However, firmware implementations use lower rates: Betaflight samples at 8 kHz (gyro) / 1 kHz (accel), while ArduPilot uses 1 kHz backend with 8 kHz fast sampling for the gyro.
+> **ICM-42688-P Maximum ODR**: The ICM-42688-P has a hardware maximum output data rate (ODR) of **32 kHz** for the gyroscope and **8 kHz** for the accelerometer. However, firmware implementations use lower rates: Betaflight samples at 8 kHz (gyro) / 1 kHz (accel), while ArduPilot uses 1 kHz backend with 8 kHz fast sampling for the gyro.
 
 {: .note }
 > **Fast Sampling & High-Resolution Modes Explained**:

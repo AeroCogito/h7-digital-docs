@@ -86,7 +86,7 @@ For detailed technical specifications and capabilities:
 
 **ArduPilot**: [Flight modes](https://ardupilot.org/copter/docs/flight-modes.html) • [Advanced features](https://ardupilot.org/copter/docs/common-advanced-configuration.html) • [Companion computers](https://ardupilot.org/dev/docs/companion-computers.html)
 
-**Betaflight**: [Features overview](https://www.betaflight.com/docs/wiki/getting-started) • [Flight performance](https://betaflight.com/docs/development/PID-tuning) • [OSD setup](https://betaflight.com/docs/wiki/configurator/osd-tab)
+**Betaflight**: [Features overview](https://www.betaflight.com/docs/wiki/getting-started) • [Flight performance](https://betaflight.com/docs/development/PID-tuning) • [OSD setup](https://betaflight.com/docs/wiki/app/osd-tab)
 
 ---
 
@@ -241,11 +241,11 @@ After flashing ArduPilot, perform initial setup:
    - **Failsafes**: Configure battery, radio, and GPS failsafes
 
 3. **H7-Digital Specific Parameters** (already set by default, verify if needed):
-   - `SERIAL5_PROTOCOL = 2` (MAVLink2 on UART5 for companion computer)
+   - `SERIAL1_PROTOCOL = 2` (MAVLink2 on UART5 for companion computer)
    - `SERIAL2_PROTOCOL = 42` (MSP DisplayPort on UART2 for OSD)
-   - `SERIAL8_PROTOCOL = 5` (GPS on UART8)
+   - `SERIAL3_PROTOCOL = 5` (GPS on UART8)
    - `SERIAL4_PROTOCOL = 23` (RC Input on UART4)
-   - `SERIAL3_PROTOCOL = 16` (ESC Telemetry on UART3)
+   - `SERIAL5_PROTOCOL = 16` (ESC Telemetry on UART3)
    - `OSD_TYPE = 5` (MSP DisplayPort)
    - `BATT_MONITOR = 4` (Voltage and Current)
    - `INS_GYRO_FILTER = 20` (for ICM-42688-P)
@@ -394,7 +394,7 @@ If using DShot and need to configure ESCs:
 **Official Documentation**:
 - [Betaflight Wiki](https://betaflight.com/docs/wiki)
 - [Getting Started Guide](https://www.betaflight.com/docs/wiki/getting-started)
-- [Configurator Manual](https://www.betaflight.com/docs/category/configurator)
+- [Betaflight App Manual](https://www.betaflight.com/docs/wiki/app)
 
 **Community Resources**:
 - [Joshua Bardwell's Betaflight Tutorials](https://www.youtube.com/@JoshuaBardwell)
@@ -411,9 +411,9 @@ If using DShot and need to configure ESCs:
 
 **Solutions**:
 1. **Install USB Drivers**:
-   - Download [ImpulseRC Driver Fixer](https://impulserc.com/pages/downloads)
+   - Install the STM32 Virtual COM Port driver from [STMicroelectronics](https://www.st.com/en/development-tools/stsw-stm32102.html)
+   - Or use [Zadig](https://zadig.akeo.ie/) to install WinUSB drivers for DFU mode
    - Run as Administrator
-   - Click "Fix" to install all necessary drivers
    - Reconnect board
 
 2. **Try Different USB Cable**:

@@ -35,7 +35,7 @@ aux_links:
 aux_links_new_tab: true
 
 # Footer
-footer_content: "Copyright &copy; 2025 AeroCogito. NDAA-compliant hardware designed and manufactured in the USA."
+footer_content: "Copyright &copy; 2026 AeroCogito. NDAA-compliant hardware designed and manufactured in the USA."
 
 # Back to top link
 back_to_top: true
@@ -44,7 +44,7 @@ back_to_top_text: "Back to top"
 # GitHub edit link
 gh_edit_link: true
 gh_edit_link_text: "Edit this page on GitHub"
-gh_edit_repository: "https://github.com/AeroCogito/h7-digital"
+gh_edit_repository: "https://github.com/AeroCogito/h7-digital-docs"
 gh_edit_branch: "main"
 gh_edit_view_mode: "tree"
 last_edit_timestamp: true

@@ -37,7 +37,7 @@ For detailed pinout information, see [Hardware Pinout]({{ site.baseurl }}/docs/h
 - **4x M3 rubber dampers** (soft-mount for vibration isolation)
 
 ### Cables
-- **1x JST-SH 8-pin to JST-GH 8-pin cable** ([**BetaFlight ESC Standard**](https://www.betaflight.com/docs/development/manufacturer/connector-standard#standard-esc-pin-configuration) FC <-> ESC Connection)
+- **1x JST-SH 8-pin to JST-SH 8-pin cable** ([**BetaFlight ESC Standard**](https://www.betaflight.com/docs/development/manufacturer/connector-standard#standard-esc-pin-configuration) FC <-> ESC Connection)
 
 {: .note }
 > Pre-soldered connectors include all JST-SH connectors following the [BetaFlight Standard](https://www.betaflight.com/docs/development/manufacturer/connector-standard). No soldering required for basic setup!

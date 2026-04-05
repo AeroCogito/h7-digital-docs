@@ -45,7 +45,7 @@ For complete technical specifications, hardware capabilities, and firmware confi
 
 **Understanding Programmable Range Modes:**
 
-The ICM-42688-P offers eight programmable gyroscope ranges (±15.625 to ±4000 dps) and four accelerometer ranges (±2g to ±32g). However, **both Betaflight and ArduPilot use fixed settings**:
+The ICM-42688-P offers programmable gyroscope ranges (±15.625 to ±2000 dps in 8 settings, plus ±4000 dps extended range) and four accelerometer ranges (±2g to ±32g). However, **both Betaflight and ArduPilot use fixed settings**:
 
 - **Gyroscope**: ±2000 dps (both firmwares)
 - **Accelerometer**: ±16g (both firmwares)
@@ -98,7 +98,7 @@ Typical flight: 1-4g normal, 4-8g aerobatics, 10-20g crashes. The ±16g range ha
 
 #### High-Resolution Sampling: ArduPilot vs Betaflight
 
-The ICM-42688-P features an **industry-first 20-bit FIFO format** that provides higher resolution data than standard 16-bit ADC output. **ArduPilot and Betaflight use this capability differently** based on their design priorities.
+The ICM-42688-P features an **20-bit high-resolution FIFO mode** that provides higher resolution data than standard 16-bit ADC output. **ArduPilot and Betaflight use this capability differently** based on their design priorities.
 
 **ArduPilot: High-Resolution FIFO Mode Enabled ✅**
 
@@ -194,7 +194,7 @@ Both implementations are **correct for their target applications**:
 The H7-Digital's ICM-42688-P supports both modes, allowing the same hardware to excel at autonomous missions (ArduPilot) and FPV racing (Betaflight).
 
 **Driver Source Code:**
-- [ArduPilot Invensensev3 Driver](https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp) - Lines 267-270: `GYRO_SCALE_HIGHRES_2000DPS`, `ACCEL_SCALE_HIGHRES_16G`; FIFO high-res enable
+- [ArduPilot Invensensev3 Driver](https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp) - Search `GYRO_SCALE_HIGHRES_2000DPS` / `ACCEL_SCALE_HIGHRES_16G` for high-resolution FIFO mode configuration
 - [Betaflight ICM426XX Driver](https://github.com/betaflight/betaflight/blob/master/src/main/drivers/accgyro/accgyro_spi_icm426xx.c) - Standard 16-bit register reads; no FIFO high-res mode
 - [ICM-42688-P Datasheet](https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/ds-000347-icm-42688-p-v1.6.pdf) - Section 14.44: FIFO_CONFIG1 register, FIFO_HIRES_EN bit
 
@@ -212,15 +212,16 @@ AHRS_ORIENTATION = 10    # ROTATION_ROLL_180_YAW_90
 **Betaflight Default Rotation:**
 ```
 GYRO_1_ALIGN CW90_DEG
-
-Runtime adjustment via CLI (if needed):
-  set align_board_roll = 180
-  set align_board_pitch = 0
-  set align_board_yaw = 90
 ```
 
-{: .note }
-> Hardware rotation is configured in `config.h` via `GYRO_1_ALIGN`. Runtime adjustments can be made via CLI commands shown above.
+This is set in `config.h` and accounts for the IMU chip orientation on the PCB. No additional board alignment is needed when the H7-Digital is mounted in the standard orientation (arrow forward, components up).
+
+If you mount the board in a non-standard orientation (e.g., upside-down), adjust via CLI:
+```
+set align_board_roll = 180
+set align_board_pitch = 0
+set align_board_yaw = 0
+```
 
 {: .tip }
 > If you mount the flight controller in a non-standard orientation, adjust the rotation parameters above. For ArduPilot, see the [complete AHRS_ORIENTATION enum list](https://ardupilot.org/copter/docs/common-mounting-the-flight-controller.html). For Betaflight, set custom degrees via CLI or leave as default and physically mount the board correctly.
@@ -275,8 +276,8 @@ An external GPS module is **recommended** for autonomous flight modes, position 
 
 **ArduPilot Parameters:**
 ```
-SERIAL8_PROTOCOL = 5     (GPS)
-SERIAL8_BAUD = 115       (115200 for most GPS modules)
+SERIAL3_PROTOCOL = 5     (GPS)
+SERIAL3_BAUD = 115       (115200 for most GPS modules)
 GPS_TYPE = 1             (Auto-detect u-blox/NMEA)
 ```
 
@@ -532,7 +533,7 @@ Excessive vibration causes:
 **Solutions:**
 - Wait 2-5 minutes for cold start (first GPS lock)
 - Move to open area away from buildings
-- Verify GPS UART configuration (SERIAL8_PROTOCOL = 5)
+- Verify GPS UART configuration (SERIAL3_PROTOCOL = 5)
 - Check GPS LED (should blink when searching, solid when locked)
 
 ---
@@ -585,7 +586,7 @@ Excessive vibration causes:
 ## External Resources
 
 - [ArduPilot Compass Setup](https://ardupilot.org/copter/docs/common-compass-setup-advanced.html) - Official calibration guide
-- [Betaflight Setup Tab](https://betaflight.com/docs/wiki/configurator/setup-tab) - Sensor calibration and board alignment
+- [Betaflight Setup Tab](https://betaflight.com/docs/wiki/app/setup-tab) - Sensor calibration and board alignment
 
 ---
 

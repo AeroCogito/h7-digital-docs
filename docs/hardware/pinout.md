@@ -672,16 +672,40 @@ Extended DShot Telemetry (EDT) enables ESCs to transmit comprehensive telemetry 
 ```
 MOT_PWM_TYPE = 5 or 6        (DShot300 or DShot600)
 SERVO_BLH_BDMASK = 85        (Enable bidirectional on M1,M3,M5,M7)
+SERVO_DSHOT_ESC = 3          (BLHeli32/AM32/Kiss+EDT — for 32-bit ESCs)
+                              OR
+SERVO_DSHOT_ESC = 4          (BLHeli_S/BlueJay+EDT — for 8-bit ESCs flashed with BlueJay)
 ```
-EDT data automatically logged as EDT2 messages in flight logs (no additional config needed).
+
+The `SERVO_DSHOT_ESC` parameter tells ArduPilot which ESC firmware family is installed and whether to enable EDT decoding. Choose the value matching your ESCs:
+
+| Value | ESC Firmware | EDT |
+|---|---|---|
+| 0 | None | — |
+| 1 | BLHeli32 / Kiss / AM32 | ❌ (RPM only) |
+| 2 | BLHeli_S / BlueJay | ❌ (RPM only) |
+| **3** | **BLHeli32 / AM32 / Kiss + EDT** | ✅ |
+| **4** | **BLHeli_S / BlueJay + EDT** | ✅ |
+
+EDT data is then automatically decoded and logged as **EDT2** messages in DataFlash logs. Stress level and status frame events (demag, desync, stall) appear in the `merge_edt2_status` / `merge_edt2_stress` fields exposed via `AP_ESC_Telem`. EDTv2 decoder is enabled at compile time via `AP_EXTENDED_DSHOT_TELEM_V2_ENABLED` (on by default in standard ArduPilot Copter 4.4+ builds).
 
 **Betaflight:**
-- ESC/Motor tab → Enable "Bidirectional DShot"
-- EDT data automatically detected and logged if ESC supports it
-- No additional configuration required
+- **ESC/Motor tab** → Enable "Bidirectional DShot"
+- **CLI** → Enable EDT decoding:
+  ```
+  set dshot_edt = ON
+  save
+  ```
+- EDT is **OFF by default** in Betaflight even when bidirectional DShot is enabled. You must explicitly enable `dshot_edt` in the CLI for the FC to decode the extended telemetry frames.
+- Once enabled, EDT data (temperature, voltage, current, plus EDTv2 stress and status events) is automatically logged in Blackbox and shown in the OSD where applicable.
+- Available in Betaflight 4.4+. The decoder supports all EDT frame types including the EDTv2 status frame (`DSHOT_TELEMETRY_TYPE_STATE_EVENTS`).
 
-{: .note }
-> **Automatic Operation**: EDT operates transparently. If your ESC firmware supports EDT, the flight controller will automatically receive and log the extended telemetry data. No special configuration beyond enabling bidirectional DShot is required.
+{: .important }
+> **EDT is opt-in on both firmwares**:
+> - **ArduPilot**: Set `SERVO_DSHOT_ESC` to 3 or 4 (matching your ESC firmware). Enabling bidirectional DShot alone is NOT enough.
+> - **Betaflight**: Run `set dshot_edt = ON` in CLI. Enabling bidirectional DShot alone is NOT enough.
+>
+> If your ESCs support EDT but you skip this configuration step, the flight controller will only decode basic eRPM telemetry and ignore the extended frames.
 
 **Advantages**:
 - ✅ **Best of both worlds**: High RPM rate (400Hz) + comprehensive data (voltage/current/temp)

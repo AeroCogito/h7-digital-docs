@@ -135,20 +135,20 @@ Common `SERIALx_PROTOCOL` values:
 
 | Connection | Location | Voltage Range | Notes |
 |------------|----------|---------------|-------|
-| **VBAT** | ESC connector Pin 1 | 11.1V - 25.2V (3S-6S) | Main power input |
+| **VBAT** | ESC connector Pin 1 | 9.9V - 25.2V (3S-6S LiPo) | Main power input |
 | **GND** | ESC connector Pin 2 | Ground | Common ground |
 
 ### Regulated Power Outputs
 
 | Output | Voltage | Current | Available On | Purpose |
 |--------|---------|---------|--------------|---------|
-| **5V** | 5.0V | 2.5A peak, 2A continuous | Servos connector | Servo power (VBAT only) |
+| **5V** | 5.0V | 2.5A peak, 2A continuous | SRVO connector | Servo power (VBAT only) |
 | **4.5V** | 4.5V nominal | 2.5A peak, 2A continuous | RC Input, GPS connectors | Peripherals (USB or VBAT) |
 | **10V** | 10.0V | 2.5A peak, 2A continuous | VTX connector only | Digital HD VTX power |
 
 {: .note }
 > **5V and 4.5V Rails Share Same BEC**: Both the 5V and 4.5V outputs are powered from the same 5V BEC (2A continuous, 2.5A peak total). The difference:
-> - **5V rail**: Direct BEC output (5V pads, e.g Servos connector) - only powered when VBAT is connected
+> - **5V rail**: Direct BEC output (5V pads, e.g SRVO connector) - only powered when VBAT is connected
 > - **4.5V rail**: BEC or USB power auto-select (RC Input, GPS connectors) - powered when either USB is connected or VBAT
 
 {: .warning }
@@ -168,7 +168,7 @@ Common `SERIALx_PROTOCOL` values:
 
 | Pin | Label | Signal | STM32 Pin | Timer | Voltage | Function |
 |-----|-------|--------|-----------|-------|---------|----------|
-| 1 | BAT | VBAT | - | - | 11.1V - 25.2V | Battery positive (3S-6S) |
+| 1 | BAT | VBAT | - | - | 9.9V - 25.2V | Battery positive (3S-6S LiPo) |
 | 2 | G | GND | - | - | Ground | Battery negative / common ground |
 | 3 | C | Current | PA1 | ADC1 | 3.3V analog | Current sensor input from ESC |
 | 4 | T | Telemetry | PD9 | UART3 RX | 3.3V UART | ESC telemetry (RX only) |
@@ -256,7 +256,7 @@ Common `SERIALx_PROTOCOL` values:
 
 ---
 
-### Servos Connector (4-pin JST-SH)
+### SRVO Connector (4-pin JST-SH)
 
 **Location**: Top side, top edge, left  
 **Connector Type**: 4-pin JST-SH
@@ -648,14 +648,17 @@ Extended DShot Telemetry (EDT) enables ESCs to transmit comprehensive telemetry 
 
 | Firmware | Minimum Version | EDT Version | Notes |
 |----------|----------------|-------------|-------|
-| **BlueJay** (8-bit) | v0.19.2+ | EDTv1 | Recommended stable |
-| **BlueJay** (8-bit) | v0.20.1-RC2+ | EDTv2 | Testing, includes advanced diagnostics |
-| **AM32** (32-bit) | v2.04+ | EDTv1/v2 | Full EDT support |
-| **BLHeli_32** (32-bit) | v32.9+ | EDTv1 | Not recommended (reported issues) |
-| **Stock BLHeli_S** | N/A | ❌ | Not supported (use BlueJay alternative firmware) |
+| **BlueJay** (8-bit) | v0.19.2+ | EDTv2 | Recommended stable for BLHeli_S hardware |
+| **BlueJay** (8-bit) | v0.20.1-RC2+ | EDTv2 | Latest test code, additional refinements |
+| **AM32** (32-bit) | v2.05+ | EDT supported | Recommended for 32-bit ESCs |
+| **BLHeli_32** (32-bit) | v32.9 | EDT supported | **Not recommended** — see warning below |
+| **Stock BLHeli_S** | N/A | ❌ | Not supported (use BlueJay instead) |
+
+{: .note }
+> **EDTv2 Diagnostics**: EDTv2 adds ESC status events including stress level, stall, desync, and demag/cross-sequence anomaly detection on top of the basic RPM/voltage/current/temperature telemetry.
 
 {: .warning }
-> **BLHeli_32 EDT Issues**: While BLHeli_32 v32.9+ added EDT support, it has reported issues. BlueJay and AM32 are recommended for reliable EDT operation.
+> **BLHeli_32 Status**: BLHeli_32 is **closed-source** and has not had a release since v32.10 (November 2023). The Betaflight community recommends [v32.7 as the last reliable version](https://betaflight.com/docs/wiki/getting-started/hardware/esc-firmware) — "stuck motors, hot motors and unexpected behavior have been observed in BLHeli_32 releases after 32.7." For new builds, use **AM32** (32-bit ESCs) or **BlueJay** (BLHeli_S hardware).
 
 **Protocol Requirements**:
 - **Requires bidirectional DShot** (DShot300+ recommended)
@@ -696,13 +699,13 @@ EDT data automatically logged as EDT2 messages in flight logs (no additional con
 - ❌ Telemetry sent on "best efforts" basis (not guaranteed delivery)
 
 **When to Use EDT**:
-- ✅ You have BlueJay v0.19.2+ or AM32 v2.04+ ESCs
+- ✅ You have BlueJay v0.19.2+ or AM32 v2.05+ ESCs
 - ✅ You want comprehensive telemetry without extra wiring
 - ✅ You prioritize both performance (400Hz RPM) and diagnostics (voltage/temp/current)
 - ✅ You're building a new quad and can choose EDT-compatible ESCs
 
 {: .tip }
-> **Recommended Approach**: For new builds, choose ESCs with AM32 v2.04+ or flash BLHeli_S ESCs with BlueJay v0.19.2+ firmware. EDT provides the benefits of both UART and bidirectional DShot telemetry in a single protocol - the best of both worlds.
+> **Recommended Approach**: For new builds, choose ESCs with AM32 v2.05+ or flash BLHeli_S ESCs with BlueJay v0.19.2+ firmware. EDT provides the benefits of both UART and bidirectional DShot telemetry in a single protocol - the best of both worlds.
 
 ---
 
@@ -714,7 +717,7 @@ EDT data automatically logged as EDT2 messages in flight logs (no additional con
 | **Data Provided** | RPM, voltage, current, temp, mAh | RPM only | RPM, voltage, current, temp, diagnostics |
 | **Update Rate** | 10-100Hz | Up to 400Hz | Up to 400Hz (RPM) |
 | **DShot Speed** | All (150/300/600) | DShot300+ only | DShot300+ only |
-| **ESC Support** | BLHeli_32, AM32, BLHeli_S* | BLHeli_32, AM32, BLHeli_S (BlueJay) | BlueJay v0.19.2+, AM32 v2.04+, BLHeli_32 v32.9+ (issues) |
+| **ESC Support** | BLHeli_32, AM32, BLHeli_S* | BLHeli_32, AM32, BLHeli_S (BlueJay) | BlueJay v0.19.2+, AM32 v2.05+, BLHeli_32 v32.9+ (issues) |
 | **CPU Overhead** | Low (interrupt-based) | Moderate (DMA-based) | Moderate (DMA-based) |
 | **ArduPilot Motors** | All motors | M1, M3, M5, M7 only | M1, M3, M5, M7 only |
 | **Betaflight Motors** | All motors | M1-M7 (M8 no DMA) | M1-M7 (M8 no DMA) |
@@ -728,7 +731,7 @@ EDT data automatically logged as EDT2 messages in flight logs (no additional con
 ### Which Method Should I Use?
 
 **Choose Extended DShot Telemetry (EDT) if:** ⭐ *Best option for new builds*
-- ✅ You have BlueJay v0.19.2+ or AM32 v2.04+ ESCs (or can flash BlueJay)
+- ✅ You have BlueJay v0.19.2+ or AM32 v2.05+ ESCs (or can flash BlueJay)
 - ✅ You want **both** high RPM rate (400Hz) **and** comprehensive data (voltage/temp/current)
 - ✅ You want cleaner wiring without telemetry wire
 - ✅ You're building a new quad and can choose EDT-compatible ESCs
@@ -866,7 +869,7 @@ See [LED Quick Reference]({{ site.baseurl }}/docs/hardware/specifications#leds) 
 
 | Function | Pin | Usage |
 |----------|-----|-------|
-| **Enter DFU Mode** | BOOT0 | Hold during power-on to enter firmware flashing mode |
+| **Enter DFU Mode** | BOOT button | Hold during power-on to enter firmware flashing mode |
 
 ---
 

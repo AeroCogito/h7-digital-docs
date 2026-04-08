@@ -57,7 +57,8 @@ The H7-Digital features a sophisticated power management system with multiple vo
 1. **Via 4-in-1 ESC** (Recommended)
    - Use included JST-SH ESC cable
    - ESC provides battery power to FC
-   - ESC current sensor provides telemetry data to Pin 4 (optional)
+   - ESC current sensor provides analog signal to Pin 3 (typically present on 4-in-1 ESCs)
+   - ESC UART telemetry on Pin 4 (optional; requires ESC firmware/hardware support — see [ESC Telemetry Methods]({{ site.baseurl }}/docs/hardware/pinout#understanding-esc-telemetry-methods))
 
 2. **Direct Battery Connection** (Alternative)
    - Solder battery leads directly to ESC connector pads
@@ -91,7 +92,7 @@ This section covers practical power planning, current budgeting, and wiring guid
 - Flight controller MCU and logic (via onboard 3.3V LDO)
 - GPS module (via GPS connector)
 - RC receiver (via RC INPUT connector)
-- Servos (via SERVOS connector)
+- Servos (via SRVO connector)
 - External I2C compass (via GPS connector)
 - Onboard sensors (IMU, barometer)
 
@@ -100,7 +101,7 @@ This section covers practical power planning, current budgeting, and wiring guid
 | **H7-Digital Logic** | 150mA | 200mA | Internal |
 | **GPS Module** | 50-80mA | 100mA | GPS connector |
 | **RC Receiver** | 30-50mA | 80mA | RC INPUT |
-| **Servos (2x)** | 200-500mA | 1000mA+ | SERVOS |
+| **Servos (2x)** | 200-500mA | 1000mA+ | SRVO |
 | **Compass** | 10mA | 15mA | GPS connector (I2C) |
 | **Reserve** | - | 200mA | Safety margin |
 | **TOTAL** | ~600mA typical | ~2A peak | - |
@@ -112,7 +113,7 @@ This section covers practical power planning, current budgeting, and wiring guid
 > - Limiting servo speed/torque in firmware
 
 {: .tip }
-> **Reducing Servo Noise**: For applications with high servo current draw, add a **470–1000 µF low-ESR capacitor (≥10V rated)** across the servo power pins (5V and GND) as close as possible to the SERVOS connector. This capacitor acts as a local energy reservoir to absorb millisecond-scale current spikes during servo motion, preventing voltage sag and reducing electrical noise coupling into the flight controller. Use a polymer or low-ESR electrolytic capacitor for best performance, and add a 0.1 µF ceramic capacitor in parallel for high-frequency filtering.
+> **Reducing Servo Noise**: For applications with high servo current draw, add a **470–1000 µF low-ESR capacitor (≥10V rated)** across the servo power pins (5V and GND) as close as possible to the SRVO connector. This capacitor acts as a local energy reservoir to absorb millisecond-scale current spikes during servo motion, preventing voltage sag and reducing electrical noise coupling into the flight controller. Use a polymer or low-ESR electrolytic capacitor for best performance, and add a 0.1 µF ceramic capacitor in parallel for high-frequency filtering.
 
 ### 10V BEC - VTX Power Management
 
@@ -325,7 +326,7 @@ BATT_AMP_PERVLT = 18.0     (Current sensor scaling)
 4. Use known current source or ESC calibration for current scale
 
 {: .note }
-> **Current Sensor Source**: The current sensor input (Pin 4 on ESC connector) receives data from the ESC onboard current sensor. If your ESC does not have a current sensor, current monitoring will not function. Voltage monitoring works independently.
+> **Current Sensor Source**: The current sensor input (Pin 3 on ESC connector) receives an analog signal from the ESC onboard current sensor. If your ESC does not have a current sensor, current monitoring will not function. Voltage monitoring works independently.
 
 ### Low Battery Warnings
 
@@ -356,7 +357,7 @@ BATT_CRT_MAH = 3500     (mAh consumed before critical)
 | **GPS Module** | 5V (4.5V via USB) | 80mA | 5V BEC or USB | GPS connector Pin 1 |
 | **External Compass** | 5V (4.5V via USB) | 10mA | 5V BEC or USB | GPS connector I2C |
 | **RC Receiver** | 5V (4.5V via USB) | 50mA | 5V BEC or USB | RC INPUT Pin 1 |
-| **Servos (S1/S2)** | 5V | 500mA+ | 5V BEC (battery only) | SERVOS Pin 1 |
+| **Servos (S1/S2)** | 5V | 500mA+ | 5V BEC (battery only) | SRVO Pin 1 |
 | **Digital VTX** | 10V | 1000mA+ | 10V BEC (battery only) | VTX Pin 1 |
 | **SD Card** | 3.3V | 50mA | 5V BEC → 3.3V LDO | Internal |
 

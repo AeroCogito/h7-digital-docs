@@ -73,7 +73,7 @@ The H7-Digital uses **JST-SH connectors** following the [Betaflight Standard](ht
 
 ### Power System
 
-- **Input voltage**: 3S-6S (11.1V - 25.2V)
+- **Input voltage**: 3S-6S LiPo (9.9V - 25.2V)
 - **5V BEC**: 2A continuous, 2.5A peak
 - **10V VTX power**: 2A continuous, 2.5A peak
 
@@ -124,7 +124,7 @@ Using JST-SH connectors, attach:
 
 ### Power Issues
 - ❌ **Wrong polarity**: Always verify positive/negative before connecting
-- ❌ **Undervoltage**: Ensure you use at least a 3S (11.1V) battery
+- ❌ **Undervoltage**: Use a 3S–6S LiPo (9.9V–25.2V operating range); 4S–6S recommended for most builds
 - ❌ **Overloading BECs**: Don't exceed 2A continuous on either the 5V or 10V rails (2A/2.5A continuous/burst for each)
 
 ### Mechanical Issues

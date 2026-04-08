@@ -75,7 +75,7 @@ For component selection guidance, see:
 - [Oscar Liang's Build Guides](https://oscarliang.com/)
 
 {: .note }
-> **H7-Digital requirements**: 30.5mm mounting pattern, 3S-6S battery (11.1V-25.2V), digital VTX only (10V/2A power provided)
+> **H7-Digital requirements**: 30.5mm mounting pattern, 3S-6S LiPo battery (9.9V-25.2V), digital VTX only (10V/2A power provided)
 
 ---
 

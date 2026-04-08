@@ -418,7 +418,7 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 | Blue single flash         | Disarmed, pre-arm OK                    | ![]({{ site.baseurl }}/assets/images/led/02_blue_single_flash.gif) |
 | Blue double flash         | Disarmed, pre-arm failure               | ![]({{ site.baseurl }}/assets/images/led/03_blue_double_flash.gif) |
 | Blue → Green → Amber chase| Save trim / ESC calibration in progress | ![]({{ site.baseurl }}/assets/images/led/05_bga_chase.gif) |
-| Amber off                 | No GPS detected                         | ![]({{ site.baseurl }}/assets/images/led/06_all_off.gif) |
+| Amber off                 | No GPS detected (blue continues arming pattern) | ![]({{ site.baseurl }}/assets/images/led/02_blue_single_flash.gif) |
 | Amber fast blink (~2 Hz)  | GPS present, searching for lock         | ![]({{ site.baseurl }}/assets/images/led/07_amber_fast_blink.gif) |
 | Amber slow blink (~1 Hz)  | GPS 2D lock                             | ![]({{ site.baseurl }}/assets/images/led/08_amber_slow_blink.gif) |
 | Amber solid               | GPS 3D lock or better                   | ![]({{ site.baseurl }}/assets/images/led/09_amber_solid.gif) |
@@ -433,12 +433,12 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 
 | LED Color / Pattern | Meaning | Preview |
 |---------------------|---------|---------|
-| Blue + Green flashing (5 cycles) | Initialising (boot) | ![]({{ site.baseurl }}/assets/images/led/12_blue_green_flash.gif) |
+| Blue + Green flashing (5 cycles) | Initialising (boot) | ![]({{ site.baseurl }}/assets/images/led/14_bf_boot_5flash.gif) |
 | Blue solid | **Armed** (motors can spin) | ![]({{ site.baseurl }}/assets/images/led/01_blue_solid.gif) |
 | Green solid | Self-leveling mode active (Angle, Horizon, Alt Hold, or Pos Hold) | ![]({{ site.baseurl }}/assets/images/led/10_green_solid.gif) |
 | Green off | Acro / rate mode (no self-leveling) | ![]({{ site.baseurl }}/assets/images/led/06_all_off.gif) |
-| Blue + Green flashing fault pattern | **Hardware failure** - 5 short flashes, pause, then N long flashes (N = failure code), repeated. See [Betaflight FC-LEDs Documentation](https://www.betaflight.com/docs/development/FC-LEDs) for codes. | ![]({{ site.baseurl }}/assets/images/led/12_blue_green_flash.gif) |
-| Blue toggling rapidly | ESC passthrough / serial 4way active | ![]({{ site.baseurl }}/assets/images/led/02_blue_single_flash.gif) |
+| Blue + Green flashing fault pattern | **Hardware failure** - 5 short flashes, pause, then N long flashes (N = failure code), repeated. See [Betaflight FC-LEDs Documentation](https://www.betaflight.com/docs/development/FC-LEDs) for codes. | ![]({{ site.baseurl }}/assets/images/led/15_bf_failure_pattern.gif) |
+| Blue toggling rapidly | ESC passthrough / serial 4way active | ![]({{ site.baseurl }}/assets/images/led/16_blue_rapid.gif) |
 
 {: .note }
 > **Amber LED is normally off in Betaflight after boot.** It briefly turns on during very early boot (`initPhase1`) and turns off before the boot blink sequence starts. It is not used to indicate normal operation.
@@ -456,7 +456,7 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 
 | Feature | Details |
 |---------|---------|
-| **Pin** | BOOT0 |
+| **Pin** | BOOT button (STM32 BOOT0 pin) |
 | **Function** | Enter DFU mode |
 | **Usage** | Hold during power-on for firmware flashing |
 | **Notes** | Only amber LED will illuminate in DFU mode |

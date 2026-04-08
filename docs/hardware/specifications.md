@@ -413,33 +413,44 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 
 | LED Color / Pattern       | Meaning                                 | Preview |
 |---------------------------|-----------------------------------------|---------|
+| Blue/Amber alternating (~8 Hz) | Initialising (boot)                | ![]({{ site.baseurl }}/assets/images/led/04_blue_amber_alternating.gif) |
 | Blue solid                | Armed                                   | ![]({{ site.baseurl }}/assets/images/led/01_blue_solid.gif) |
 | Blue single flash         | Disarmed, pre-arm OK                    | ![]({{ site.baseurl }}/assets/images/led/02_blue_single_flash.gif) |
 | Blue double flash         | Disarmed, pre-arm failure               | ![]({{ site.baseurl }}/assets/images/led/03_blue_double_flash.gif) |
-| Blue/Amber alternating    | Initialising (boot)                     | ![]({{ site.baseurl }}/assets/images/led/04_blue_amber_alternating.gif) |
 | Blue → Green → Amber chase| Save trim / ESC calibration in progress | ![]({{ site.baseurl }}/assets/images/led/05_bga_chase.gif) |
 | Amber off                 | No GPS detected                         | ![]({{ site.baseurl }}/assets/images/led/06_all_off.gif) |
-| Amber fast blink (~2 Hz)  | GPS present, no lock                    | ![]({{ site.baseurl }}/assets/images/led/07_amber_fast_blink.gif) |
-| Amber slow blink (~1 Hz)  | 2D lock (incomplete)                    | ![]({{ site.baseurl }}/assets/images/led/08_amber_slow_blink.gif) |
+| Amber fast blink (~2 Hz)  | GPS present, searching for lock         | ![]({{ site.baseurl }}/assets/images/led/07_amber_fast_blink.gif) |
+| Amber slow blink (~1 Hz)  | GPS 2D lock                             | ![]({{ site.baseurl }}/assets/images/led/08_amber_slow_blink.gif) |
 | Amber solid               | GPS 3D lock or better                   | ![]({{ site.baseurl }}/assets/images/led/09_amber_solid.gif) |
+
+{: .note }
+> **Green LED is unused in ArduPilot normal operation.** It only illuminates as part of the Save Trim / ESC Calibration chase sequence.
 
 {: .tip }
 > **Viewing Detailed Pre-Arm Messages**: Connect to Mission Planner or QGroundControl to see specific pre-arm failure reasons. The ground station displays exact error messages that the LEDs cannot convey.
 
 #### Betaflight LED Quick Reference
 
-See [Betaflight FC-LEDs Documentation](https://www.betaflight.com/docs/development/FC-LEDs) for complete LED status codes.
-
 | LED Color / Pattern | Meaning | Preview |
 |---------------------|---------|---------|
+| Blue + Green flashing (5 cycles) | Initialising (boot) | ![]({{ site.baseurl }}/assets/images/led/12_blue_green_flash.gif) |
 | Blue solid | **Armed** (motors can spin) | ![]({{ site.baseurl }}/assets/images/led/01_blue_solid.gif) |
-| Blue flashing | Warning condition, serial/ESC passthrough, or USB MSC activity | ![]({{ site.baseurl }}/assets/images/led/02_blue_single_flash.gif) |
-| Blue/Green flashing 5 times | Initialising (boot) | ![]({{ site.baseurl }}/assets/images/led/12_blue_green_flash.gif) |
-| Amber normally on | Normal operation (default state) | ![]({{ site.baseurl }}/assets/images/led/09_amber_solid.gif) |
-| Flash pattern (1-16 pulses) | Hardware fault / error code - see [Betaflight FC-LEDs Documentation](https://www.betaflight.com/docs/development/FC-LEDs) for specific codes | ![]({{ site.baseurl }}/assets/images/led/13_all_flash.gif) |
+| Green solid | Self-leveling mode active (Angle, Horizon, Alt Hold, or Pos Hold) | ![]({{ site.baseurl }}/assets/images/led/10_green_solid.gif) |
+| Green off | Acro / rate mode (no self-leveling) | ![]({{ site.baseurl }}/assets/images/led/06_all_off.gif) |
+| Blue + Green flashing fault pattern | **Hardware failure** - 5 short flashes, pause, then N long flashes (N = failure code), repeated. See [Betaflight FC-LEDs Documentation](https://www.betaflight.com/docs/development/FC-LEDs) for codes. | ![]({{ site.baseurl }}/assets/images/led/12_blue_green_flash.gif) |
+| Blue toggling rapidly | ESC passthrough / serial 4way active | ![]({{ site.baseurl }}/assets/images/led/02_blue_single_flash.gif) |
+
+{: .note }
+> **Amber LED is normally off in Betaflight after boot.** It briefly turns on during very early boot (`initPhase1`) and turns off before the boot blink sequence starts. It is not used to indicate normal operation.
 
 {: .tip }
-> **Viewing Detailed Arming Issues**: Connect to Betaflight Configurator and check the CLI `status` command to see specific arming disable flags.
+> **Viewing Detailed Arming Issues**: Betaflight does not signal pre-arm status via the LEDs. Connect to Betaflight Configurator and check the CLI `status` command to see specific arming disable flags.
+
+#### DFU Mode (Both Firmwares)
+
+| LED Pattern | Meaning | Preview |
+|---|---|---|
+| Amber only (Blue + Green off) | DFU mode active — ready to flash firmware | ![]({{ site.baseurl }}/assets/images/led/09_amber_solid.gif) |
 
 ### Boot Button
 
@@ -493,10 +504,10 @@ See [Betaflight FC-LEDs Documentation](https://www.betaflight.com/docs/developme
 | Standard | Status |
 |----------|--------|
 | **NDAA Section 848** | Operating Software compliant (with secure firmware) |
-| **DIU Blue List Framework** | Compliant (Pending) |
+| **DCMA Blue UAS Framework** | Compliant |
 
 {: .note }
-> The H7-Digital hardware is designed, manufactured, and assembled in the USA with an auditable supply chain for NDAA and DIU Blue List Framework compliance. Contact [support@aerocogito.com](mailto:support@aerocogito.com) for compliance documentation.
+> The H7-Digital hardware is designed, manufactured, and assembled in the USA with an auditable supply chain for NDAA and DCMA Blue UAS Framework compliance. Contact [support@aerocogito.com](mailto:support@aerocogito.com) for compliance documentation.
 
 ---
 

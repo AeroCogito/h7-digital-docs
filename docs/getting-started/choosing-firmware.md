@@ -115,7 +115,7 @@ If you require NDAA Section 848 compliance:
 Once you've decided which firmware to use, follow the installation instructions below.
 
 {: .important }
-> **First Time Setup**: The H7-Digital ships with Betaflight pre-installed. If you want to use ArduPilot instead, you'll need to flash the ArduPilot firmware first.
+> **First Time Setup**: The H7-Digital ships with a vendor-signed, DCMA Blue UAS Framework compliant build of ArduPilot pre-installed. If you want to use Betaflight or stock ArduPilot instead, you'll need to flash the desired firmware.
 
 ---
 
@@ -168,7 +168,7 @@ Choose one of the following ground control stations:
 #### First-Time Installation (Using .hex file with bootloader)
 
 {: .note }
-> The H7-Digital ships with Betaflight pre-installed. To switch to ArduPilot, you must use DFU mode and flash a `.hex` file that includes the ArduPilot bootloader.
+> The H7-Digital ships with a vendor-signed, DCMA Blue UAS Framework compliant build of ArduPilot pre-installed. If your board already has an ArduPilot bootloader, you can use the easier `.apj` update method below instead of DFU. Use the `.hex` (with-bootloader) flow if switching from Betaflight or recovering from a non-bootable state.
 
 1. **Enter DFU Mode**:
    - Power off the H7-Digital completely
@@ -289,7 +289,7 @@ For complete H7-Digital UART mapping with connector locations, see [Hardware Pin
 ### Step 2: Enter DFU Mode
 
 {: .note }
-> **Pre-Installed Betaflight**: If your H7-Digital ships with Betaflight pre-installed, you can skip DFU mode and flash directly from the Configurator using the "Flash Firmware" button without entering DFU.
+> **Switching from ArduPilot to Betaflight**: The H7-Digital ships with ArduPilot pre-installed. To install Betaflight, you must enter DFU mode and flash via Betaflight Configurator. Once Betaflight is installed, future updates can be done without DFU mode.
 
 To manually enter DFU mode:
 1. Power off the H7-Digital completely

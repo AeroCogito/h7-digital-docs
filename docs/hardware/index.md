@@ -3,7 +3,7 @@ layout: default
 title: Hardware
 nav_order: 3
 has_children: true
-permalink: /docs/hardware
+permalink: /docs/hardware/
 ---
 
 # Hardware Documentation

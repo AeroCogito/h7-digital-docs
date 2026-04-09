@@ -43,7 +43,7 @@ For complete technical specifications, hardware capabilities, and firmware confi
 
 ---
 
-**Understanding Programmable Range Modes:**
+#### Understanding Programmable Range Modes
 
 The ICM-42688-P offers programmable gyroscope ranges (±15.625 to ±2000 dps in 8 settings, plus ±4000 dps extended range) and four accelerometer ranges (±2g to ±32g). However, **both Betaflight and ArduPilot use fixed settings**:
 

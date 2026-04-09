@@ -53,15 +53,15 @@ Complete technical specifications for the AeroCogito H7-Digital flight controlle
 | **Accel Range** | ±2g to ±32g (4 programmable settings) |
 | **Accel Resolution (Standard)** | 16-bit ADC (0.488 mg/LSB at ±16g) |
 | **Accel Resolution (High-Res)** | 18-bit FIFO (0.122 mg/LSB at ±16g) - **4x improvement** |
-| **Max ODR** | 32 kHz gyro / 8 kHz accel (hardware maximum) |
-| **Firmware ODR** | Gyro: 8 kHz (Betaflight), 8 kHz fast sampling → 1 kHz backend (ArduPilot) / Accel: 1 kHz (both) |
+| **Max ODR** | 32kHz gyro / 8kHz accel (hardware maximum) |
+| **Firmware ODR** | Gyro: 8kHz (Betaflight), 8kHz fast sampling → 1kHz backend (ArduPilot) / Accel: 1kHz (both) |
 | **Power Supply** | Isolated 3.3V rail with enhanced filtering |
 
 **Key Features**:
 
 **Performance Specifications**:
-- Industry-leading low noise (2.8 mdps/√Hz gyro, 70 µg/√Hz accel typical)
-- Excellent temperature stability (±5 mdps/°C gyro offset)
+- Industry-leading low noise (2.8mdps/√Hz gyro, 70µg/√Hz accel typical)
+- Excellent temperature stability (±5mdps/°C gyro offset)
 - Extended measurement ranges (±4000 dps gyro, ±32g accel)
 
 **Resolution Modes** (ArduPilot vs Betaflight):
@@ -76,7 +76,7 @@ Complete technical specifications for the AeroCogito H7-Digital flight controlle
 
 **H7-Digital Hardware Enhancements**:
 - Isolated 3.3V power rail eliminates electrical noise
-- CLKIN support (Betaflight): 32 kHz external clock on PE5 for improved timing accuracy
+- CLKIN support (Betaflight): 32kHz external clock on PE5 for improved timing accuracy
 
 {: .tip }
 > The ICM-42688-P is considered one of the best IMUs for flight control, offering exceptional noise performance and stability. The isolated power rail on the H7-Digital further enhances performance by greatly reducing power supply noise.
@@ -99,12 +99,12 @@ For sensor mounting, calibration procedures, and high-resolution sampling detail
 | **Manufacturer** | Infineon |
 | **Interface** | I2C1 (internal bus) |
 | **I2C Address** | 0x76 |
-| **Pressure Range** | 300-1200 hPa |
-| **Pressure Resolution** | 0.06 Pa RMS (24-bit output) |
-| **Pressure Precision** | ±0.002 hPa RMS (±0.02m altitude noise) in high precision mode |
-| **Absolute Accuracy** | ±1 hPa (±8m) |
-| **Hardware Max Rate** | 200 Hz |
-| **Firmware Sample Rate** | 32 Hz (both firmwares, 16x oversampling) |
+| **Pressure Range** | 300-1200hPa |
+| **Pressure Resolution** | 0.06Pa RMS (24-bit output) |
+| **Pressure Precision** | ±0.002hPa RMS (±0.02m altitude noise) in high precision mode |
+| **Absolute Accuracy** | ±1hPa (±8m) |
+| **Hardware Max Rate** | 200Hz |
+| **Firmware Sample Rate** | 32Hz (both firmwares, 16x oversampling) |
 | **Temperature Range** | -40°C to +85°C |
 | **Package** | Ruggedized, waterproof (IPx8 certified - 50m for 1hr) |
 
@@ -120,8 +120,8 @@ For sensor mounting, calibration procedures, and high-resolution sampling detail
 > **Driver Compatibility**: The DPS368 is register-compatible with the DPS310 and uses the same driver code in both ArduPilot and Betaflight. The primary difference is the ruggedized, waterproof package (IPX8 certified). The DPS368 maintains the same communication protocol and register map as the DPS310.
 
 **Driver References:**
-- [ArduPilot AP_Baro_DPS280 Driver](https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_Baro/AP_Baro_DPS280.cpp) - Supports DPS280/DPS310/DPS368, configured for 32 Hz sampling with 16x oversampling
-- [Betaflight barometer_dps310.c Driver](https://github.com/betaflight/betaflight/blob/master/src/main/drivers/barometer/barometer_dps310.c) - `USE_BARO_DPS310`, configured for 32 Hz sampling with 16x oversampling, I2C address 0x76
+- [ArduPilot AP_Baro_DPS280 Driver](https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_Baro/AP_Baro_DPS280.cpp) - Supports DPS280/DPS310/DPS368, configured for 32Hz sampling with 16x oversampling
+- [Betaflight barometer_dps310.c Driver](https://github.com/betaflight/betaflight/blob/master/src/main/drivers/barometer/barometer_dps310.c) - `USE_BARO_DPS310`, configured for 32Hz sampling with 16x oversampling, I2C address 0x76
 - [DPS368 Datasheet](https://www.infineon.com/dgdl/Infineon-DPS368-DataSheet-v01_01-EN.pdf?fileId=5546d46269e1c019016a0c45105d4b40) - Infineon official datasheet
 
 ### External Sensors (Not Included)
@@ -156,7 +156,7 @@ For sensor mounting, calibration procedures, and high-resolution sampling detail
 
 | Parameter | Specification |
 |-----------|---------------|
-| **Input Voltage Range** | 9.9V - 25.2V (3S-6S LiPo) |
+| **Input Voltage Range** | 9.9V-25.2V (3S-6S LiPo) |
 | **Absolute Maximum** | 28V |
 | **Minimum Operating** | 8V |
 | **Typical Voltage** | 16.8V (4S LiPo) or 25.2V (6S LiPo) |
@@ -211,11 +211,11 @@ For sensor mounting, calibration procedures, and high-resolution sampling detail
 | **Current Range** | 0-180A (default scale) |
 | **Current Resolution** | 12-bit ADC (4096 steps) |
 | **Current Pin** | PA1 (ADC1) |
-| **Sensing Location** | Via **T** on the ESC connector |
+| **Sensing Location** | Via **C** (Pin 3) on the ESC connector |
 
 **Default Scales**:
 - Voltage: 11.0:1 divider
-- Current: 18.0 A/V scale
+- Current: 18.0mV/A scale
 
 {: .note }
 > Battery monitoring scales may need calibration for your specific build. See [ArduPilot Power Module Configuration](https://ardupilot.org/copter/docs/common-power-module-configuration-in-mission-planner.html) or Betaflight Configurator's Power tab for calibration procedures.
@@ -297,7 +297,7 @@ For complete motor pin assignments, timer channels, and DMA configuration, see [
 
 ### UART Ports
 
-**6 UART ports** available with configurable baud rates up to 2 Mbps (ArduPilot) / 1 Mbps (Betaflight):
+**6 UART ports** available with configurable baud rates up to 2Mbps (ArduPilot) / 1Mbps (Betaflight):
 
 | Port | Default Use | Connector |
 |------|-------------|-----------|
@@ -321,13 +321,13 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 | **I2C4** | PB6 | PB7 | Up to 1MHz (Fm+) | 400kHz (ArduPilot), 800kHz (Betaflight) | External (Compass) |
 
 **Hardware Capabilities**:
-- **Standard Mode**: 100 kHz
-- **Fast Mode (Fm)**: 400 kHz
-- **Fast Mode Plus (Fm+)**: 1 MHz (STM32H743 hardware supported)
+- **Standard Mode**: 100kHz
+- **Fast Mode (Fm)**: 400kHz
+- **Fast Mode Plus (Fm+)**: 1MHz (STM32H743 hardware supported)
 
 **Firmware Defaults**:
-- **ArduPilot**: 400 kHz (Fast Mode) - conservative, broadly compatible
-- **Betaflight**: 800 kHz default - can be adjusted via CLI (`i2c1_clockspeed_khz`, `i2c4_clockspeed_khz`)
+- **ArduPilot**: 400kHz (Fast Mode) - conservative, broadly compatible
+- **Betaflight**: 800kHz default - can be adjusted via CLI (`i2c1_clockspeed_khz`, `i2c4_clockspeed_khz`)
 
 **Features**:
 - 3.3V logic levels
@@ -336,7 +336,7 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 - Configurable speed for sensor compatibility
 
 {: .note }
-> **I2C Speed and Sensor Compatibility**: The DPS368 barometer supports up to 1 MHz (Fast-mode Plus). External compass modules typically support up to 400 kHz. If experiencing sensor detection issues in Betaflight, try reducing I2C speed: `set i2c4_clockspeed_khz = 400` in CLI.
+> **I2C Speed and Sensor Compatibility**: The DPS368 barometer supports up to 1MHz (Fast-mode Plus). External compass modules typically support up to 400kHz. If experiencing sensor detection issues in Betaflight, try reducing I2C speed: `set i2c4_clockspeed_khz = 400` in CLI.
 
 ### SPI Ports
 
@@ -346,14 +346,14 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 
 **Features**:
 - High-speed SPI communication to IMU
-  - **ArduPilot**: 16 MHz (2 MHz initialization, 16 MHz operation)
-  - **Betaflight**: 24 MHz maximum (default, configurable via `ICM426XX_CLOCK`)
-  - **ICM-42688-P Hardware Maximum**: 24 MHz SPI clock
+  - **ArduPilot**: 16MHz (2MHz initialization, 16MHz operation)
+  - **Betaflight**: 24MHz maximum (default, configurable via `ICM426XX_CLOCK`)
+  - **ICM-42688-P Hardware Maximum**: 24MHz SPI clock
 - DMA support for efficient CPU usage
 - Hardware CS control
 
 {: .note }
-> **SPI Frequency vs IMU ODR**: The SPI bus frequency (how fast the MCU communicates with the IMU chip) is independent from the IMU Output Data Rate/ODR (how often the sensor generates new samples). ArduPilot uses 16 MHz SPI with 1 kHz gyro backend, while Betaflight uses 24 MHz SPI with 8 kHz gyro sampling.
+> **SPI Frequency vs IMU ODR**: The SPI bus frequency (how fast the MCU communicates with the IMU chip) is independent from the IMU Output Data Rate/ODR (how often the sensor generates new samples). ArduPilot uses 16MHz SPI with 1kHz gyro backend, while Betaflight uses 24MHz SPI with 8kHz gyro sampling.
 
 ### USB
 
@@ -361,7 +361,7 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 |---------------|---------|
 | **Type** | USB-C connector |
 | **Standard** | USB 2.0 Full Speed |
-| **Speed** | 12 Mbps |
+| **Speed** | 12Mbps |
 | **Power** | Bus-powered (5V input) or self-powered |
 | **Protocol** | Virtual COM port (VCP) |
 
@@ -413,14 +413,14 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 
 | LED Color / Pattern       | Meaning                                 | Preview |
 |---------------------------|-----------------------------------------|---------|
-| Blue/Amber alternating (~8 Hz) | Initialising (boot)                | ![]({{ site.baseurl }}/assets/images/led/04_blue_amber_alternating.gif) |
+| Blue/Amber alternating (~8Hz) | Initialising (boot)                | ![]({{ site.baseurl }}/assets/images/led/04_blue_amber_alternating.gif) |
 | Blue solid                | Armed                                   | ![]({{ site.baseurl }}/assets/images/led/01_blue_solid.gif) |
 | Blue single flash         | Disarmed, pre-arm OK                    | ![]({{ site.baseurl }}/assets/images/led/02_blue_single_flash.gif) |
 | Blue double flash         | Disarmed, pre-arm failure               | ![]({{ site.baseurl }}/assets/images/led/03_blue_double_flash.gif) |
 | Blue → Green → Amber chase| Save trim / ESC calibration in progress | ![]({{ site.baseurl }}/assets/images/led/05_bga_chase.gif) |
 | Amber off                 | No GPS detected (blue continues arming pattern) | ![]({{ site.baseurl }}/assets/images/led/02_blue_single_flash.gif) |
-| Amber fast blink (~2 Hz)  | GPS present, searching for lock         | ![]({{ site.baseurl }}/assets/images/led/07_amber_fast_blink.gif) |
-| Amber slow blink (~1 Hz)  | GPS 2D lock                             | ![]({{ site.baseurl }}/assets/images/led/08_amber_slow_blink.gif) |
+| Amber fast blink (~2Hz)  | GPS present, searching for lock         | ![]({{ site.baseurl }}/assets/images/led/07_amber_fast_blink.gif) |
+| Amber slow blink (~1Hz)  | GPS 2D lock                             | ![]({{ site.baseurl }}/assets/images/led/08_amber_slow_blink.gif) |
 | Amber solid               | GPS 3D lock or better                   | ![]({{ site.baseurl }}/assets/images/led/09_amber_solid.gif) |
 
 {: .note }
@@ -540,7 +540,7 @@ For complete UART mapping with TX/RX pin assignments, DMA configuration, and con
 | **GPS** | Sensor dependent | 5-10Hz | 5-10Hz (depends on GPS module) |
 
 {: .note }
-> **ICM-42688-P Maximum ODR**: The ICM-42688-P has a hardware maximum output data rate (ODR) of **32 kHz** for the gyroscope and **8 kHz** for the accelerometer. However, firmware implementations use lower rates: Betaflight samples at 8 kHz (gyro) / 1 kHz (accel), while ArduPilot uses 1 kHz backend with 8 kHz fast sampling for the gyro.
+> **ICM-42688-P Maximum ODR**: The ICM-42688-P has a hardware maximum output data rate (ODR) of **32kHz** for the gyroscope and **8kHz** for the accelerometer. However, firmware implementations use lower rates: Betaflight samples at 8kHz (gyro) / 1kHz (accel), while ArduPilot uses 1kHz backend with 8kHz fast sampling for the gyro.
 
 {: .note }
 > **Fast Sampling & High-Resolution Modes Explained**:

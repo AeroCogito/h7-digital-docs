@@ -168,9 +168,9 @@ Have these items on hand:
 4. **Check ESC response** - No stuttering or unusual sounds
 
 {: .note }
-> Motor numbering differs between ArduPilot and Betaflight depending on the frame type selected. Verify against your firmware's documentation. 
-- [ArduPilot Motor Order](https://ardupilot.org/copter/docs/connect-escs-and-motors.html) 
-- [BetaFlight Motor Order](https://www.betaflight.com/docs/wiki/app/motors-tab)
+> Motor numbering differs between ArduPilot and Betaflight depending on the frame type selected. Verify against your firmware's documentation.
+- [ArduPilot Motor Order](https://ardupilot.org/copter/docs/connect-escs-and-motors.html)
+- [Betaflight Motor Order](https://www.betaflight.com/docs/wiki/app/motors-tab)
 
 ### Radio Test
 

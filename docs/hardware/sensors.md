@@ -114,16 +114,16 @@ ArduPilot enables the ICM-42688-P's 20-bit FIFO format (FIFO_HIRES_EN bit) for e
 - Accel: 16-bit → 18-bit = **4x better resolution**
 
 **Sampling Strategy:**
-1. Hardware samples at 8 kHz with 19/18-bit resolution
+1. Hardware samples at 8kHz with 19/18-bit resolution
 2. Data buffered in 2048-byte FIFO (~105 high-res samples)
-3. Software reads FIFO, averages 8 samples → 1 kHz backend (default)
-4. EKF runs at 400 Hz on downsampled data
+3. Software reads FIFO, averages 8 samples → 1kHz backend (default)
+4. EKF runs at 400Hz on downsampled data
 
 **Why High-Res Mode Benefits ArduPilot:**
 - **Precision hover**: At 10 dps slow drift, 19-bit = 0.076% error vs 16-bit = 0.6% error (8x improvement)
 - **EKF fusion**: Cleaner sensor data improves GPS/optical flow fusion for position hold
-- **Anti-aliasing**: 8 kHz → 1 kHz downsampling prevents 600-4000 Hz vibration aliasing
-- **CPU headroom available**: 400 Hz main loop uses ~30-50% CPU, +15-20% overhead acceptable
+- **Anti-aliasing**: 8kHz → 1kHz downsampling prevents 600-4000Hz vibration aliasing
+- **CPU headroom available**: 400Hz main loop uses ~30-50% CPU, +15-20% overhead acceptable
 
 **Trade-offs:**
 - ⚠️ +0.5-1ms latency from FIFO buffering
@@ -142,17 +142,17 @@ Betaflight reads **directly from 16-bit output registers** without using FIFO or
 - Direct register read: `GYRO_DATA_X1` (0x25), `ACCEL_DATA_X1` (0x1F)
 
 **Sampling Strategy:**
-1. Hardware samples at 8 kHz (native ODR)
+1. Hardware samples at 8kHz (native ODR)
 2. Data-ready interrupt triggers immediate register read
 3. Simple `int16_t` conversion, minimal processing
-4. All filtering (AAF, notch, lowpass) runs at 8 kHz
-5. PID loop locked to gyro rate (8 kHz)
+4. All filtering (AAF, notch, lowpass) runs at 8kHz
+5. PID loop locked to gyro rate (8kHz)
 
 **Why Standard Mode Benefits Betaflight:**
 - **Minimum latency**: Direct read <0.5ms vs FIFO ~1ms (critical for racing)
-- **CPU efficiency**: 8 kHz PID + BiDir DShot + dynamic notch needs every cycle
+- **CPU efficiency**: 8kHz PID + BiDir DShot + dynamic notch needs every cycle
 - **Resolution sufficient**: At 500-1500 dps racing, 0.061 dps/LSB = 0.012-0.036% accuracy (exceeds human perception)
-- **Hardware AAF**: Configurable 258-1962 Hz anti-alias filter provides clean data before sampling
+- **Hardware AAF**: Configurable 258-1962Hz anti-alias filter provides clean data before sampling
 
 **Trade-offs:**
 - ⚠️ Lower resolution at slow speeds (0-100 dps) - less critical for manual control
@@ -168,10 +168,10 @@ Betaflight reads **directly from 16-bit output registers** without using FIFO or
 | **Gyro Resolution** | 19-bit (0.0076 dps/LSB) | 16-bit (0.0610 dps/LSB) |
 | **Accel Resolution** | 18-bit (0.122 mg/LSB) | 16-bit (0.488 mg/LSB) |
 | **FIFO Enable** | `FIFO_HIRES_EN` bit set | No FIFO used |
-| **Sampling** | 8 kHz → avg → 1 kHz backend | 8 kHz native (no downsampling) |
+| **Sampling** | 8kHz → avg → 1kHz backend | 8kHz native (no downsampling) |
 | **Latency** | 0.5-1ms (FIFO buffering) | <0.5ms (immediate read) |
 | **CPU Overhead** | +15-20% (bit extraction, averaging) | Baseline (most efficient) |
-| **Anti-Aliasing** | Downsampling (8 kHz → 1 kHz) | Hardware AAF (258-1962 Hz) |
+| **Anti-Aliasing** | Downsampling (8kHz → 1kHz) | Hardware AAF (258-1962Hz) |
 | **Best Use Case** | 0-100 dps slow precision | 500-1500 dps fast maneuvers |
 | **Optimized For** | Autonomous, GPS fusion, hover | FPV racing, freestyle, acro |
 
@@ -187,7 +187,7 @@ Betaflight reads **directly from 16-bit output registers** without using FIFO or
 
 Both implementations are **correct for their target applications**:
 
-- **ArduPilot**: High-res mode provides superior slow-motion sensing for autonomous operations where precision position hold and GPS fusion are critical. The additional latency and CPU cost are acceptable when main loop runs at 400 Hz.
+- **ArduPilot**: High-res mode provides superior slow-motion sensing for autonomous operations where precision position hold and GPS fusion are critical. The additional latency and CPU cost are acceptable when main loop runs at 400Hz.
 
 - **Betaflight**: Standard mode minimizes latency and CPU load for manual FPV control where every millisecond matters and racing speeds (500-1500 dps) already provide 0.012% accuracy with 16-bit data - far exceeding what human pilots can perceive or utilize.
 
@@ -269,7 +269,7 @@ An external GPS module is **recommended** for autonomous flight modes, position 
 
 | Feature | ArduPilot | Betaflight |
 |---------|-----------|------------|
-| **Serial Port** | SERIAL8 (UART8) | UART8 |
+| **Serial Port** | SERIAL3 (UART8) | UART8 |
 | **Protocol** | GPS (default) | Set in Ports tab |
 | **Baud Rate** | 115200 (auto-detect) | 115200 (UBLOX), 9600 (NMEA) |
 | **DMA** | Enabled | Enabled |

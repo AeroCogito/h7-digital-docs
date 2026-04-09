@@ -75,7 +75,7 @@ Here's the high-level process to get flying:
 
 {: .warning }
 > **Important Safety Information**
-> 
+>
 > - Always remove propellers when testing on a bench
 > - Never arm your aircraft with propellers installed indoors
 > - Follow all local regulations and airspace restrictions

@@ -11,7 +11,7 @@ nav_order: 1
 What's included with your H7-Digital flight controller and what to check before you start building.
 {: .fs-6 .fw-300 }
 
-## Table of contents
+## Table of Contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -23,9 +23,9 @@ What's included with your H7-Digital flight controller and what to check before 
 
 Your H7-Digital package includes:
 
-### flight controller
+### Flight Controller
 - **1x H7-Digital flight controller** with JST-SH connectors for all peripherals
-- Board size: 41mm × 41mm with 30.5mm mounting holes
+- Board size: 41mm × 41mm, 30.5×30.5mm mounting pattern (M3)
 - Weight: 12g
 
 ![H7-Digital Flight Controller Top & Bottom View, Side by Side]({{ site.baseurl }}/assets/images/pinout/H7-Digital_pinout.jpg)
@@ -37,10 +37,10 @@ For detailed pinout information, see [Hardware Pinout]({{ site.baseurl }}/docs/h
 - **4x M3 rubber dampers** (soft-mount for vibration isolation)
 
 ### Cables
-- **1x JST-SH 8-pin to JST-SH 8-pin cable** ([**BetaFlight ESC Standard**](https://www.betaflight.com/docs/development/manufacturer/connector-standard#standard-esc-pin-configuration) FC <-> ESC Connection)
+- **1x JST-SH 8-pin to JST-SH 8-pin cable** ([**Betaflight ESC Standard**](https://www.betaflight.com/docs/development/manufacturer/connector-standard#standard-esc-pin-configuration) FC <-> ESC Connection)
 
 {: .note }
-> Pre-soldered connectors include all JST-SH connectors following the [BetaFlight Standard](https://www.betaflight.com/docs/development/manufacturer/connector-standard). No soldering required for basic setup!
+> Pre-soldered connectors include all JST-SH connectors following the [Betaflight Standard](https://www.betaflight.com/docs/development/manufacturer/connector-standard). No soldering required for basic setup!
 
 ---
 
@@ -57,12 +57,12 @@ Before you start, inspect your flight controller:
 
 1. **Connect USB-C** to your computer
 2. **Observe LEDs**:
-   - **Blue LED** (power): Should illuminate 
+   - **Blue LED** (power): Should illuminate
    - **OR** any combination of Blue/Green/Amber LED activity
 3. **Disconnect USB** if everything looks good
 
 {: .warning }
-> If LEDs don't illuminate or you see physical damage, contact support@aerocogito.com before proceeding.
+> If LEDs don't illuminate or you see physical damage, contact [support@aerocogito.com](mailto:support@aerocogito.com) before proceeding.
 
 ---
 

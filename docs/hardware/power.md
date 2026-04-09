@@ -38,19 +38,19 @@ The H7-Digital features a sophisticated power management system with multiple vo
 
 | Parameter | Specification | Notes |
 |-----------|---------------|-------|
-| **Input Voltage Range** | 9.9V - 25.2V | 3S–6S LiPo (usable pack range) |
-| **Recommended** | 14.8V - 25.2V | 4S–6S LiPo (most common use) |
+| **Input Voltage Range** | 9.9V-25.2V | 3S-6S LiPo (usable pack range) |
+| **Recommended** | 14.8V-25.2V | 4S-6S LiPo (most common use) |
 | **Absolute Maximum** | 28V | Do not exceed; risk of regulator damage |
 | **Absolute Minimum** | 8V | Below this, flight controller power is not guaranteed; VTX voltage will track battery voltage |
 
 {: .warning }
-> **Voltage Limits**: Do **not** exceed 28 V input. Operation above this may permanently damage the regulators and destroy the board.  
-> On the low side, the regulators remain enabled down to ~8 V. This is **below the absolute 3.0V/cell minimum on 3S packs**—while the system may still power in an emergency, operation in this region places severe stress on the battery and can cause permanent damage.
+> **Voltage Limits**: Do **not** exceed 28 V input. Operation above this may permanently damage the regulators and destroy the board.
+> On the low side, the regulators remain enabled down to ~8V. This is **below the absolute 3.0V/cell minimum on 3S packs** — while the system may still power in an emergency, operation in this region places severe stress on the battery and can cause permanent damage.
 
 ### Power Input Connection
 
 **Primary Power Input**: ESC Connector (8-pin JST-SH) - See [ESC Connector Pinout]({{ site.baseurl }}/docs/hardware/pinout#esc-connector-8-pin-jst-sh) for complete pin assignments
-- **Pin 1**: VBAT (Battery positive, **9.9V - 25.2V**)
+- **Pin 1**: VBAT (Battery positive, **9.9V-25.2V**)
 - **Pin 2**: GND (Battery negative, common ground)
 
 **Connection Methods:**
@@ -113,7 +113,7 @@ This section covers practical power planning, current budgeting, and wiring guid
 > - Limiting servo speed/torque in firmware
 
 {: .tip }
-> **Reducing Servo Noise**: For applications with high servo current draw, add a **470–1000 µF low-ESR capacitor (≥10V rated)** across the servo power pins (5V and GND) as close as possible to the SRVO connector. This capacitor acts as a local energy reservoir to absorb millisecond-scale current spikes during servo motion, preventing voltage sag and reducing electrical noise coupling into the flight controller. Use a polymer or low-ESR electrolytic capacitor for best performance, and add a 0.1 µF ceramic capacitor in parallel for high-frequency filtering.
+> **Reducing Servo Noise**: For applications with high servo current draw, add a **470–1000µF low-ESR capacitor (≥10V rated)** across the servo power pins (5V and GND) as close as possible to the SRVO connector. This capacitor acts as a local energy reservoir to absorb millisecond-scale current spikes during servo motion, preventing voltage sag and reducing electrical noise coupling into the flight controller. Use a polymer or low-ESR electrolytic capacitor for best performance, and add a 0.1µF ceramic capacitor in parallel for high-frequency filtering.
 
 ### 10V BEC - VTX Power Management
 
@@ -279,7 +279,7 @@ resource PINIO 1 E02
 - Measurement range: 0-26V (covers 6S LiPo)
 
 **Current Input**: PA1 (ADC1 Channel 17)
-- Scaling: 18 mV/A (from ESC current sensor)
+- Scaling: 18mV/A (from ESC current sensor)
 - Typical range: 0-180A (depends on ESC sensor)
 
 ### ArduPilot Configuration
@@ -328,6 +328,9 @@ BATT_AMP_PERVLT = 18.0     (Current sensor scaling)
 {: .note }
 > **Current Sensor Source**: The current sensor input (Pin 3 on ESC connector) receives an analog signal from the ESC onboard current sensor. If your ESC does not have a current sensor, current monitoring will not function. Voltage monitoring works independently.
 
+{: .important }
+> **4-in-1 ESC Current Monitoring**: On 4-in-1 ESCs, the analog Pin 3 input (total pack current via shared shunt) is the only reliable way to monitor current. UART telemetry and EDT current frames are per-motor and don't work on shared-shunt 4-in-1 hardware. Individual standalone ESCs with per-ESC current sensors can report current via UART or EDT.
+
 ### Low Battery Warnings
 
 **ArduPilot:**
@@ -362,8 +365,8 @@ BATT_CRT_MAH = 3500     (mAh consumed before critical)
 | **SD Card** | 3.3V | 50mA | 5V BEC → 3.3V LDO | Internal |
 
 {: .note }
-> **USB vs Battery Power**: Through diode protection, 5V peripherals typically see no less than ~4.5V (within 5V tolerance) whether powered from USB or battery.  
-> The 5V servo connector and 10V VTX connector bypass this diode and are **battery-only** (not powered from USB). 
+> **USB vs Battery Power**: Through diode protection, 5V peripherals typically see no less than ~4.5V (within 5V tolerance) whether powered from USB or battery.
+> The 5V servo connector and 10V VTX connector bypass this diode and are **battery-only** (not powered from USB).
 > See [Power - Power Flow Diagram]({{ site.baseurl }}/docs/hardware/power#power-flow-diagram).
 
 ---
@@ -394,7 +397,7 @@ BATT_CRT_MAH = 3500     (mAh consumed before critical)
 
 ## Troubleshooting Power Issues
 
-### No Power to flight controller
+### No Power to Flight Controller
 
 **Symptoms**: No LED lights, no USB connection, completely dead
 

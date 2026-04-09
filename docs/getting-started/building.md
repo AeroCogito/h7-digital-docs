@@ -11,7 +11,7 @@ nav_order: 3
 Physical assembly instructions and best practices for building with the H7-Digital flight controller.
 {: .fs-6 .fw-300 }
 
-## Table of contents
+## Table of Contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -73,7 +73,7 @@ The H7-Digital uses **JST-SH connectors** following the [Betaflight Standard](ht
 
 ### Power System
 
-- **Input voltage**: 3S-6S LiPo (9.9V - 25.2V)
+- **Input voltage**: 3S-6S LiPo (9.9V-25.2V)
 - **5V BEC**: 2A continuous, 2.5A peak
 - **10V VTX power**: 2A continuous, 2.5A peak
 
@@ -94,7 +94,7 @@ Here's the high-level build process when using the H7-Digital:
 - Mount 4-in-1 ESC or individual ESCs
 - Connect ESC signal wires to H7-Digital via JST-SH connector
 
-### 3. flight controller installation
+### 3. Flight Controller Installation
 - Install rubber dampeners on H7-Digital mounting holes
 - Mount H7-Digital on frame (arrow pointing forward)
 - Secure with screws through dampers
@@ -124,7 +124,7 @@ Using JST-SH connectors, attach:
 
 ### Power Issues
 - ❌ **Wrong polarity**: Always verify positive/negative before connecting
-- ❌ **Undervoltage**: Use a 3S–6S LiPo (9.9V–25.2V operating range); 4S–6S recommended for most builds
+- ❌ **Undervoltage**: Use a 3S-6S LiPo (9.9V-25.2V operating range); 4S-6S recommended for most builds
 - ❌ **Overloading BECs**: Don't exceed 2A continuous on either the 5V or 10V rails (2A/2.5A continuous/burst for each)
 
 ### Mechanical Issues
@@ -172,7 +172,7 @@ After completing your build:
 - **[Betaflight Discord](https://discord.gg/betaflight)**: Real-time Betaflight support
 
 ### Connector Standards
-- **[BetaFlight Connector Standard](https://www.betaflight.com/docs/development/manufacturer/connector-standard)**: Official specification
+- **[Betaflight Connector Standard](https://www.betaflight.com/docs/development/manufacturer/connector-standard)**: Official specification
 
 ---
 

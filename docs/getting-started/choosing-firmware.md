@@ -11,7 +11,7 @@ nav_order: 2
 Understanding the differences between ArduPilot and Betaflight to make the right choice for your application.
 {: .fs-6 .fw-300 }
 
-## Table of contents
+## Table of Contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -162,7 +162,7 @@ Choose one of the following ground control stations:
 
 {: .important }
 > **Installation Type**:
-> - **First-time installation** (from Betaflight): Use `.hex` file with DFU mode
+> - **First-time installation** (or recovering from a non-bootable state): Use `.hex` file with DFU mode
 > - **Updating ArduPilot**: Use `.apj` file with Mission Planner/QGroundControl (easier, no DFU)
 
 #### First-Time Installation (Using .hex file with bootloader)

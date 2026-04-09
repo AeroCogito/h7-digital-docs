@@ -22,7 +22,7 @@ This section provides detailed technical documentation for the H7-Digital hardwa
 Complete technical specifications including processor, sensors, power system, communication interfaces, and physical dimensions.
 
 ### [Pinout & Connectors]({{ site.baseurl }}/docs/hardware/pinout)
-Unified pin assignments and connector reference with detailed UART mapping, motor outputs, servo outputs, and all JST-SH connector pinouts following the BetaFlight standard.
+Unified pin assignments and connector reference with detailed UART mapping, motor outputs, servo outputs, and all JST-SH connector pinouts following the Betaflight standard.
 
 ### [Power System]({{ site.baseurl }}/docs/hardware/power)
 Power architecture, voltage regulators, battery monitoring, and VTX power control documentation.
@@ -126,7 +126,7 @@ The H7-Digital hardware is designed and manufactured to meet:
 - Full documentation available
 
 {: .note }
-> Hardware revision information is printed on the bottom of the PCB. Contact support@aerocogito.com if you need assistance identifying your hardware version.
+> Hardware revision information is printed on the bottom of the PCB. Contact [support@aerocogito.com](mailto:support@aerocogito.com) if you need assistance identifying your hardware version.
 
 ---
 

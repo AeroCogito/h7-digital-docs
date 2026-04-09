@@ -30,7 +30,7 @@ Complete pin assignments and connector reference for the H7-Digital flight contr
 | **Board Size** | 41mm × 41mm |
 | **Mounting Holes** | M3 (4 holes) |
 | **Mounting Pattern** | 30.5mm standard spacing |
-| **Connector Standard** | JST-SH - [BetaFlight Connector Standard](https://betaflight.com/docs/development/manufacturer/connector-standard) |
+| **Connector Standard** | JST-SH - [Betaflight Connector Standard](https://betaflight.com/docs/development/manufacturer/connector-standard) |
 | **Signal Voltage** | 3.3V logic |
 
 ### Pinout Diagrams
@@ -103,7 +103,7 @@ document.getElementById('pinoutModal')?.addEventListener('click', function(event
 
 ### Complete UART Reference
 
-| UART | TX Pin | RX Pin | Default Protocol | DMA (ArduPilot) | DMA (BetaFlight) | Connector/Location | Primary Use |
+| UART | TX Pin | RX Pin | Default Protocol | DMA (ArduPilot) | DMA (Betaflight) | Connector/Location | Primary Use |
 |------|--------|--------|------------------|----------|----------|-------------------|-------------|
 | **UART2** | PA2 | PA3 | DisplayPort (42) | ✓ | ※ | **VTX** connector | MSP OSD to digital VTX |
 | **UART3** | - | PD9 | ESC Telemetry (16) | ✗ | ※ | **ESC** connector Pin 4 | ESC RPM/voltage/current (RX only) |
@@ -135,7 +135,7 @@ Common `SERIALx_PROTOCOL` values:
 
 | Connection | Location | Voltage Range | Notes |
 |------------|----------|---------------|-------|
-| **VBAT** | ESC connector Pin 1 | 9.9V - 25.2V (3S-6S LiPo) | Main power input |
+| **VBAT** | ESC connector Pin 1 | 9.9V-25.2V (3S-6S LiPo) | Main power input |
 | **GND** | ESC connector Pin 2 | Ground | Common ground |
 
 ### Regulated Power Outputs
@@ -163,12 +163,12 @@ Common `SERIALx_PROTOCOL` values:
 
 ### ESC Connector (8-pin JST-SH)
 
-**Location**: Bottom side, top edge, right  
+**Location**: Bottom side, top edge, right
 **Connector Type**: 8-pin JST-SH
 
 | Pin | Label | Signal | STM32 Pin | Timer | Voltage | Function |
 |-----|-------|--------|-----------|-------|---------|----------|
-| 1 | BAT | VBAT | - | - | 9.9V - 25.2V | Battery positive (3S-6S LiPo) |
+| 1 | BAT | VBAT | - | - | 9.9V-25.2V | Battery positive (3S-6S LiPo) |
 | 2 | G | GND | - | - | Ground | Battery negative / common ground |
 | 3 | C | Current | PA1 | ADC1 | 3.3V analog | Current sensor input from ESC |
 | 4 | T | Telemetry | PD9 | UART3 RX | 3.3V UART | ESC telemetry (RX only) |
@@ -189,7 +189,7 @@ Common `SERIALx_PROTOCOL` values:
 - 1x **JST-SH 8-pin to JST-SH 8-pin** cable (for 4-in-1 ESCs)
 
 {: .warning }
-> **4-in-1 ESC Connection**: Always double check that the intended ESC pinout matches the H7-Digital ESC pinout before using the included 8-pin JST-SH ESC connector. Manufacturers often use different/incompatible pinout standards.
+> **4-in-1 ESC Connection**: Always double-check that the intended ESC pinout matches the H7-Digital ESC pinout before using the included 8-pin JST-SH ESC connector. Manufacturers often use different/incompatible pinout standards.
 
 {: .note }
 > **ESC Telemetry Options**: The H7-Digital supports three telemetry methods: UART-based ESC telemetry (via Pin 4), bidirectional DShot (via motor signal wires, RPM only), or Extended DShot Telemetry/EDT (via motor signal wires, comprehensive data). See [Understanding ESC Telemetry Methods](#understanding-esc-telemetry-methods) below for detailed comparison and configuration.
@@ -203,7 +203,7 @@ Common `SERIALx_PROTOCOL` values:
 
 ### Motors 5-8 Connector (6-pin JST-SH)
 
-**Location**: Bottom side, top edge, left  
+**Location**: Bottom side, top edge, left
 **Connector Type**: 6-pin JST-SH
 
 | Pin | Label | Signal | STM32 Pin | Timer | Voltage | Function |
@@ -227,7 +227,7 @@ Common `SERIALx_PROTOCOL` values:
 
 ### RC Input Connector (4-pin JST-SH)
 
-**Location**: Top side, top edge, right  
+**Location**: Top side, top edge, right
 **Connector Type**: 4-pin JST-SH
 
 | Pin | Label | Signal | STM32 Pin | Voltage | Function |
@@ -258,7 +258,7 @@ Common `SERIALx_PROTOCOL` values:
 
 ### SRVO Connector (4-pin JST-SH)
 
-**Location**: Top side, top edge, left  
+**Location**: Top side, top edge, left
 **Connector Type**: 4-pin JST-SH
 
 | Pin | Label | Signal | STM32 Pin | Timer | Voltage | Function |
@@ -284,7 +284,7 @@ Common `SERIALx_PROTOCOL` values:
 
 ### GPS/Compass Connector (6-pin JST-SH)
 
-**Location**: Top side, bottom edge, right (solder pads on opposite side of the board)  
+**Location**: Top side, bottom edge, right (solder pads on opposite side of the board)
 **Connector Type**: 6-pin JST-SH
 
 | Pin | Label | Signal | STM32 Pin | Voltage | Function |
@@ -319,7 +319,7 @@ Common `SERIALx_PROTOCOL` values:
 
 ### VTX (Video Transmitter) Connector (6-pin JST-SH)
 
-**Location**: Top side, bottom edge, left (solder pads on opposite side of the board)  
+**Location**: Top side, bottom edge, left (solder pads on opposite side of the board)
 **Connector Type**: 6-pin JST-SH
 
 | Pin | Label | Signal | STM32 Pin | Voltage | Function |
@@ -362,7 +362,7 @@ For DJI goggles with integrated receiver (e.g., DJI FPV Goggles V2):
 
 ### Companion Computer Connector (4-pin JST-SH)
 
-**Location**: Top side, left edge  
+**Location**: Top side, left edge
 **Connector Type**: 4-pin JST-SH
 
 | Pin | Label | Signal | STM32 Pin | Voltage | Function |
@@ -409,11 +409,11 @@ See [ArduPilot Companion Computer Documentation](https://ardupilot.org/dev/docs/
 
 ### USB-C Connector
 
-**Location**: Top side, right edge  
+**Location**: Top side, right edge
 **Connector Type**: USB Type-C
 
 **Capabilities**:
-- **USB 2.0 Full Speed** (12 Mbps)
+- **USB 2.0 Full Speed** (12Mbps)
 - **Firmware flashing** via DFU mode
 - **Ground station connection** (Mission Planner, QGroundControl, Betaflight Configurator)
 - **5V power input** (for bench testing without battery)
@@ -433,7 +433,7 @@ See [ArduPilot Companion Computer Documentation](https://ardupilot.org/dev/docs/
 
 ### Motor Pin Assignments
 
-| Output | STM32 Pin | Timer | DMA | BiDir DShot (BetaFlight) | BiDir DShot (ArduPilot) | Group |
+| Output | STM32 Pin | Timer | DMA | BiDir DShot (Betaflight) | BiDir DShot (ArduPilot) | Group |
 |--------|-----------|-------|-----|------------------|------------------|-------|
 | **M1** | PE9 | TIM1_CH1 | ✓ | ✓ | ✓ | 1 |
 | **M2** | PE11 | TIM1_CH2 | ✓ | ✓ | ✗ | 1 |
@@ -470,7 +470,7 @@ For complete details on bidirectional DShot vs UART ESC telemetry, protocol requ
 
 ### Servo Pin Assignments
 
-| Output | STM32 Pin | Timer | DMA (ArduPilot) | DMA (BetaFlight) | Group | Connector |
+| Output | STM32 Pin | Timer | DMA (ArduPilot) | DMA (Betaflight) | Group | Connector |
 |--------|-----------|-------|-----------------|------------------|-------|-----------|
 | **S1** | PC6 | TIM3_CH1 | ✓ | ✗ | 3 | SRVO Pin 3 |
 | **S2** | PC7 | TIM3_CH2 | ✓ | ✗ | 3 | SRVO Pin 4 |
@@ -642,7 +642,7 @@ Extended DShot Telemetry (EDT) enables ESCs to transmit comprehensive telemetry 
   - Cross-sequence anomalies
 
 {: .note }
-> **Current Telemetry on 4-in-1 ESCs**: Current measurement typically unavailable on 4-in-1 ESCs due to single shared current sensor (not per-ESC). Individual ESCs may support per-ESC current measurement.
+> **Current Telemetry on 4-in-1 ESCs**: On 4-in-1 ESCs, the analog Pin 3 input (total pack current via shared shunt) is the only reliable way to monitor current. UART telemetry and EDT current frames are per-motor and don't work on shared-shunt 4-in-1 hardware. Individual standalone ESCs with per-ESC current sensors can report current via UART or EDT.
 
 **Supported ESC Firmware**:
 
@@ -859,7 +859,7 @@ For detailed configuration, parameters, and troubleshooting:
 | ADC | Pin | Function | Scaling |
 |-----|-----|----------|---------|
 | **ADC1** | PA0 | Battery Voltage | 11.0:1 divider |
-| **ADC2** | PA1 | Battery Current | 18.0 mV/A |
+| **ADC2** | PA1 | Battery Current | 18.0mV/A |
 
 **Battery Monitoring Configuration**:
 - ArduPilot: `BATT_MONITOR = 4`, `BATT_VOLT_PIN = 16`, `BATT_CURR_PIN = 17`
@@ -978,7 +978,7 @@ The H7-Digital provides **solder pads** for all connectors for builders who pref
 
 ### JST-SH Series
 
-The H7-Digital uses **JST-SH connectors** exclusively, adhering to the [BetaFlight Connector Standard](https://betaflight.com/docs/development/manufacturer/connector-standard).
+The H7-Digital uses **JST-SH connectors** exclusively, adhering to the [Betaflight Connector Standard](https://betaflight.com/docs/development/manufacturer/connector-standard).
 
 **Advantages**:
 - ✓ **No soldering required** for most connections
@@ -992,7 +992,7 @@ The H7-Digital uses **JST-SH connectors** exclusively, adhering to the [BetaFlig
 - **4-pin JST-SH** - RC Input, Companion Computer, Servos
 
 {: .note }
-> **Cable Compatibility**: All JST-SH cables following the BetaFlight standard will work with the H7-Digital. Look for "Betaflight-compatible" or BetaFlight logo when purchasing cables.
+> **Cable Compatibility**: All JST-SH cables following the Betaflight standard will work with the H7-Digital. Look for "Betaflight-compatible" or Betaflight logo when purchasing cables.
 
 ---
 
@@ -1017,7 +1017,7 @@ The H7-Digital uses **JST-SH connectors** exclusively, adhering to the [BetaFlig
 
 ## External Resources
 
-- [BetaFlight Connector Standard](https://betaflight.com/docs/development/manufacturer/connector-standard) - Official JST-SH pinout standard
+- [Betaflight Connector Standard](https://betaflight.com/docs/development/manufacturer/connector-standard) - Official JST-SH pinout standard
 - [ArduPilot Serial Port Configuration](https://ardupilot.org/copter/docs/common-serial-options.html) - UART protocol setup
 - [Betaflight Ports Configuration](https://betaflight.com/docs/wiki/app/ports-tab) - Ports tab guide
 
